@@ -22,35 +22,9 @@ these infima: normalize a minimizing sequence in $L^2$, take a weakly
 convergent subsequence in the relevant Sobolev space and a strongly convergent
 subsequence in $L^2$, and use weak lower semicontinuity of the gradient norm.
 
-We record the facts used in the proof. The spaces of complex-valued functions
+We record the variational facts used below. The spaces of complex-valued functions
 are understood componentwise: $H^1(\Omega;\mathbb C)=H^1(\Omega;\mathbb R)
 +iH^1(\Omega;\mathbb R)$, and similarly for $H_0^1$.
-
-\begin{fact}[Absolute values and traces]\label[fact]{fact:absolute-trace}
-For real $v\in H^1(\Omega)$, one has $|v|\in H^1(\Omega)$ and
-\[
- \nabla|v|=\operatorname{sgn}(v)\nabla v\quad\text{almost everywhere},
- \qquad \operatorname{sgn}(0)=0.
-\]
-Also $\nabla v=0$ almost everywhere on $\{v=0\}$, so
-$|\nabla|v||=|\nabla v|$ almost everywhere.
-The trace operator $\operatorname{Tr}:H^1(\Omega)\to L^2(\partial\Omega)$
-is the bounded extension of boundary restriction for smooth functions, and
-\[
- H_0^1(\Omega)=\{v\in H^1(\Omega):\operatorname{Tr}v=0\}.
-\]
-Traces commute with absolute values, so $v\in H_0^1(\Omega)$ implies
-$|v|\in H_0^1(\Omega)$. In particular, replacing a real Dirichlet minimizer
-by its absolute value preserves its Rayleigh quotient.
-\end{fact}
-For the weak derivative formula see \cite[Proposition 3.22, equation (3.7),
-pp.~57--58]{Hunter}; the positive- and negative-part formulas immediately
-following it imply that $\nabla v=0$ almost everywhere on $\{v=0\}$.
-For traces and the characterization of zero trace, see
-\cite[Theorem 3.44, p.~72, and Section 3.11, p.~75]{Hunter}, using $p=2$
-and boundary charts to pass from the half-space to $\Omega$.
-Compatibility with absolute values follows by smooth approximation,
-continuity of the trace, and the absolute-value operation in $H^1$.
 
 \begin{fact}[Neumann variational equality over $\mathbb C$]\label[fact]{fact:neumann-equality}
 Define
@@ -66,151 +40,29 @@ $a_N(w,w)\ge0$. Equality holds if and only if $w$ satisfies
  \qquad(\psi\in H^1(\Omega;\mathbb C)).
 \end{equation}
 \end{fact}
-\begin{proof}
-Write $w=a+ib$ with $a,b$ real and mean zero. Then
-\[
- a_N(w,w)=
- \left(\int_\Omega|\nabla a|^2-\lambda_N\int_\Omega a^2\right)
- +\left(\int_\Omega|\nabla b|^2-\lambda_N\int_\Omega b^2\right)\ge0.
-\]
-Thus the complex and real Rayleigh infima coincide. If $a_N(w,w)=0$, for
-every mean-zero $\eta\in H^1(\Omega;\mathbb C)$ and $t\in\mathbb R$,
-\[
- 0\le a_N(w+t\eta,w+t\eta)
- =2t\operatorname{Re}a_N(w,\eta)+t^2a_N(\eta,\eta).
-\]
-Both signs of arbitrarily small $t$ give
-$\operatorname{Re}a_N(w,\eta)=0$; replacing $\eta$ by $i\eta$ gives
-$\operatorname{Im}a_N(w,\eta)=0$ as well. For an arbitrary $\psi$, subtract
-its mean to obtain such an $\eta$. The remaining constant $c$ satisfies
-$a_N(w,c)=-\lambda_N\overline c\int_\Omega w=0$.
-This proves \cref{eq:neumann-weak}. Conversely, testing that equation
-with $\psi=w$ gives equality. This is the weak Neumann eigenfunction
-equation: the variational formulation of the Laplacian eigenvalue problem
-with homogeneous Neumann boundary conditions. The test space is all of
-$H^1(\Omega)$, rather than $H_0^1(\Omega)$. Elliptic regularity on our
-smooth domain, using \cite[Chapter III, Theorems 6.4 and 6.5]{Showalter}, gives
-$-\Delta w=\lambda_Nw$ in $\Omega$ and $\partial_\nu w=0$ on $\partial\Omega$.
-In particular, the complex solution space is the complexification of the
-real eigenspace: separating real and imaginary parts in the weak equation
-shows that both parts are real eigenfunctions (or zero).
-\end{proof}
-
-\begin{fact}[Finite-dimensional Neumann eigenspaces]\label[fact]{fact:finite-eigenspaces}
-For any fixed $\lambda\ge0$, the complex vector space of weak Neumann
-eigenfunctions with eigenvalue $\lambda$ is finite-dimensional.
-\end{fact}
-\begin{proof}
-Otherwise choose an $L^2$-orthonormal sequence $u_j$ in that eigenspace.
-Testing each weak eigenfunction equation by $u_j$ gives
-$\|u_j\|_{H^1}^2=1+\lambda$. Compactness of
-$H^1(\Omega)\hookrightarrow L^2(\Omega)$ then gives an $L^2$-convergent
-subsequence, whereas orthonormality gives
-$\|u_j-u_\ell\|_{L^2}=\sqrt2$ for $j\ne\ell$, a contradiction.
-\end{proof}
-See also \cite[Theorem 8, p.~6]{Gantumur}, for finite multiplicity of
-Dirichlet and Neumann eigenvalues under the compact-resolvent assumptions
-satisfied by bounded smooth domains. If the real eigenspace has real
-dimension $d$, its complexification has complex dimension $d$.
-
-\begin{fact}[Independence of plane waves]\label[fact]{fact:plane-waves}
-For distinct $k_1,\ldots,k_m\in\mathbb R^2$, the functions
-$x\mapsto e^{ik_j\cdot x}$ are linearly independent over $\mathbb C$
-on every nonempty open subset of $\mathbb R^2$.
-\end{fact}
-\begin{proof}
-Suppose $\sum_j a_je^{ik_j\cdot x}=0$ on such a set, and choose an interior
-ball $B(x_0,r)$. An almost-everywhere identity is also a pointwise identity
-by continuity. Choose a unit vector $d$ with
-$(k_j-k_\ell)\cdot d\ne0$ for every $j\ne\ell$: each pair excludes only
-two directions on the unit circle. On $x=x_0+td$, $|t|<r$, the identity is
-\[
- \sum_{j=1}^m b_je^{i\omega_jt}=0,
- \qquad b_j=a_je^{ik_j\cdot x_0},\quad \omega_j=k_j\cdot d.
-\]
-The $\omega_j$ are distinct. Differentiating $q=0,\ldots,m-1$ times at
-$t=0$ gives $\sum_j b_j(i\omega_j)^q=0$. The determinant of this
-Vandermonde system is $\prod_{j<\ell}(i\omega_\ell-i\omega_j)\ne0$.
-Thus every $b_j$, and hence every $a_j$, is zero.
-\end{proof}
-For the general independence of distinct characters, including the
-exponentials $t\mapsto e^{i\omega t}$ on the additive group $\mathbb R$,
-see \cite[Theorem 2.1, p.~1]{Conrad}. The proof above establishes the
-local version on an interval that is needed here.
-
-The strict comparison below is the first-mode case of the
-Friedlander--Filonov comparison \cite{Fri91,Fil05}. The proof uses
-Filonov's plane-wave argument, with the equality and strictness steps
-expanded.
+This is the standard Rayleigh variational characterization and its equality
+case; see \cite[Theorem 11, pp.~6--7]{Gantumur}, with the Neumann form
+domain $H^1(\Omega)$ and $k=2$ (the first eigenfunction is constant).
+The complex version follows by separating real and imaginary parts.
+\Cref{eq:neumann-weak} is the variational formulation of the
+Laplacian eigenvalue problem with homogeneous Neumann boundary conditions:
+the test space is all of $H^1(\Omega)$. On our smooth domain, elliptic
+regularity \cite[Chapter III, Theorems 6.4 and 6.5]{Showalter} gives
+$-\Delta w=\lambda_Nw$ in $\Omega$ and $\partial_\nu w=0$ on
+$\partial\Omega$.
 
 \begin{lemma}\label[lemma]{lem:spectral-gap}
 One has $\lambda_N<\lambda_D$.
 \end{lemma}
-\begin{proof}
-Choose a real nonzero Dirichlet minimizer and replace it by its absolute
-value using \cref{fact:absolute-trace}. The resulting $\phi\in H_0^1(\Omega;\mathbb R)$ satisfies
-\[
- \phi\ge0,\qquad
- \int_\Omega|\nabla\phi|^2=\lambda_D\int_\Omega\phi^2,
- \qquad \int_\Omega\phi>0.
-\]
-The last inequality uses only nonnegativity and nonzero $L^2$ norm;
-pointwise strict positivity is not needed.
-
-We now allow complex-valued trial functions, keeping the same real
-variational numbers $\lambda_N$ and $\lambda_D$. For $k\in\mathbb R^2$
-with $|k|^2=\lambda_D$, put
-\[
- e_k(x)=e^{ik\cdot x},\qquad
- c_k=\frac{\int_\Omega e_k}{\int_\Omega\phi},\qquad
- w_k=e_k-c_k\phi.
-\]
-Then $w_k\in H^1(\Omega;\mathbb C)$ and $\int_\Omega w_k=0$.
-Define
-\[
- B_D(f,g)=\int_\Omega\nabla f\cdot\overline{\nabla g}
-           -\lambda_D\int_\Omega f\overline g,
- \qquad Q_D(f)=B_D(f,f).
-\]
-Since $\nabla e_k=ik e_k$ and $|e_k|=1$,
-$Q_D(e_k)=0$; the minimizing identity gives $Q_D(\phi)=0$.
-Furthermore,
-\[
- B_D(e_k,\phi)=0.
-\]
-Indeed $-\Delta e_k=\lambda_De_k$, and testing this equation against
-$\phi\in H_0^1(\Omega)$ gives the displayed identity. Rigorously, first
-test against compactly supported smooth functions and pass to $\phi$ by
-density in $H_0^1$; equivalently, the integration-by-parts boundary term
-vanishes because $\operatorname{Tr}\phi=0$.
-Expanding the quadratic form therefore gives
-\[
- Q_D(w_k)=Q_D(e_k)+|c_k|^2Q_D(\phi)
-          -2\operatorname{Re}\bigl(\overline{c_k}B_D(e_k,\phi)\bigr)=0.
-\]
-Every nonzero $w_k$ consequently has Rayleigh quotient $\lambda_D$.
-
-To see that there are nonzero $w_k$, and to prepare the strictness argument,
-choose any $m$ distinct vectors $k_1,\ldots,k_m$ on the circle
-$\{|k|^2=\lambda_D\}$. Independence of the plane waves (\cref{fact:plane-waves}) and
-$e_{k_j}=w_{k_j}+c_{k_j}\phi$ give
-\[
- m=\dim_{\mathbb C}\operatorname{span}\{e_{k_1},\ldots,e_{k_m}\}
- \le \dim_{\mathbb C}\operatorname{span}\{w_{k_1},\ldots,w_{k_m}\}+1.
-\]
-In particular $m=2$ supplies a nonzero mean-zero trial function, so the
-complex Neumann inequality in \cref{fact:neumann-equality} implies $\lambda_N\le\lambda_D$.
-
-Suppose equality held. Each nonzero $w_k$ would attain equality in the
-Neumann inequality and hence, by \cref{fact:neumann-equality}, satisfy \cref{eq:neumann-weak}; the zero
-functions satisfy that equation as well. Thus all $w_k$ lie in the fixed
-complex Neumann eigenspace for $\lambda_N$. But the preceding dimension
-estimate gives a span of dimension at least $m-1$ for every $m$.
-There are arbitrarily many distinct $k$ on the circle because
-$\lambda_D>0$, so this eigenspace would be infinite-dimensional,
-contrary to \cref{fact:finite-eigenspaces}.
-Therefore $\lambda_N<\lambda_D$.
-\end{proof}
+This is the first-mode case of Filonov's strict Dirichlet--Neumann
+comparison \cite[Theorem, p.~414]{Fil05}. With eigenvalues counted from
+one, including the constant Neumann eigenfunction, that theorem states
+$\mu_{k+1}<\lambda_k$ for a domain of finite measure in dimension at
+least two whenever $H^1(\Omega)\hookrightarrow L^2(\Omega)$ is compact.
+Our bounded smooth planar domain satisfies these hypotheses. Since
+$\Omega$ is connected, its zero Neumann eigenvalue is simple, so
+$\lambda_N=\mu_2$ and $\lambda_D=\lambda_1$; taking $k=1$ gives the
+asserted inequality.
 
 Identify $\mathbb R^2$ with $\mathbb C$, and write
 $\mathbb D=\{z\in\mathbb C:|z|<1\}$ and $S^1=\partial\mathbb D$.
@@ -219,39 +71,6 @@ the manifold with boundary $\overline\Omega$; in particular, all derivatives
 extend continuously to the boundary. A boundary chart is a smooth local
 diffeomorphism $F(s,t)$ that takes $t=0$ to $\partial\Omega$ and $t>0$
 to $\Omega$, thereby flattening the boundary.
-
-\begin{fact}[Hopf boundary point lemma]\label[fact]{fact:hopf}
-Let $U\subset\mathbb R^2$ be open and let
-$u\in C^2(U)\cap C^1(\overline U)$ satisfy $\Delta u\ge0$ and
-$u<M$ in $U$. Suppose $p\in\partial U$, $u(p)=M$, and $U$ satisfies
-the interior sphere condition at $p$: there is a ball $B_r(b)\subset U$
-with $p\in\partial B_r(b)$. Then
-\[
- \nabla u(p)\cdot\frac{p-b}{r}>0.
-\]
-If $\partial U$ is smooth near $p$, the displayed vector is its outward
-unit normal, so this conclusion is $\partial_\nu u(p)>0$.
-\end{fact}
-See \cite[Lemma 2.21, p.~29]{Hunter}; Definition 2.19 and the discussion
-preceding the lemma note that $C^2$ boundaries satisfy the interior sphere
-condition. The result can be applied locally on an interior tangent ball,
-so the function need only be defined near the boundary point in question.
-
-\begin{fact}[Boundary regularity of conformal maps]\label[fact]{fact:conformal-boundary}
-Let $G\subset\mathbb C$ be a bounded Jordan domain whose boundary is
-of class $C^{k,\alpha}$, where $k\ge1$ is an integer and $0<\alpha<1$.
-A conformal bijection $f:\mathbb D\to G$ extends to a homeomorphism
-$\overline{\mathbb D}\to\overline G$. The extension is of class
-$C^{k,\alpha}$, and $f'$ extends continuously without zeros on
-$\overline{\mathbb D}$.
-\end{fact}
-The homeomorphic extension is Carath\'eodory's boundary extension theorem.
-The regularity and nonvanishing conclusions are the Kellogg--Warschawski
-boundary regularity theorem; see \cite[Chapter 2 and Theorems 3.5 and
-3.6]{Pom92}. A Jordan domain is the bounded component of the complement
-of a simple closed curve. Here $C^{k,\alpha}$ boundary means that its
-regular local parametrizations have $k$ derivatives, with the $k$th
-H\"older continuous of exponent $\alpha$.
 
 \begin{lemma}\label[lemma]{lem:conformal}
 If $\Omega$ is simply connected, there is a conformal bijection
@@ -266,15 +85,23 @@ $\Phi:\mathbb D\to\Omega$, since $\Omega$ is nonempty, simply connected,
 and a proper subdomain of $\mathbb C$.
 
 The bounded simply connected domain $\Omega$ with smooth boundary is a
-Jordan domain. Indeed, its compact smooth boundary is a finite disjoint
+Jordan domain, meaning the bounded component of the complement of a
+simple closed curve. Indeed, its compact smooth boundary is a finite disjoint
 union of embedded circles; any additional boundary component would
 bound a hole, around which an interior loop has nonzero winding number
 and cannot contract in $\Omega$. Thus there is only the outer boundary
 curve, and $\Omega$ is its bounded complementary component.
 
-Fix $\alpha\in(0,1)$. The $C^\infty$ boundary is $C^{k,\alpha}$ for
-every integer $k\ge1$, so \cref{fact:conformal-boundary} gives a
-homeomorphic extension of $\Phi$ that is $C^\infty$ up to the boundary,
+Carath\'eodory's boundary extension theorem gives a homeomorphic extension
+$\Phi:\overline{\mathbb D}\to\overline\Omega$.
+For a Jordan domain with $C^{k,\alpha}$ boundary, where $k\ge1$ and
+$0<\alpha<1$, the Kellogg--Warschawski theorem makes this extension
+$C^{k,\alpha}$ and gives a continuous nonvanishing extension of $\Phi'$;
+see \cite[Chapter 2 and Theorems 3.5 and 3.6]{Pom92}.
+Here $C^{k,\alpha}$ means that regular local boundary parametrizations
+have $k$ derivatives, with the $k$th H\"older continuous of exponent
+$\alpha$. Fixing $\alpha\in(0,1)$, our $C^\infty$ boundary satisfies
+this hypothesis for every $k$. Thus $\Phi$ and $\Phi'$ extend smoothly,
 with $\Phi'\ne0$ everywhere on $\overline{\mathbb D}$.
 To check that the inverse is also smooth at the boundary, extend $\Phi$
 locally as a smooth real map across $S^1$. The Cauchy--Riemann equations
@@ -349,6 +176,9 @@ This is the weak Dirichlet problem
  (-\Delta-\lambda_N)L=1\quad\text{in }\Omega,
  \qquad \operatorname{Tr}L=0.
 \]
+Here $\operatorname{Tr}:H^1(\Omega)\to L^2(\partial\Omega)$ is the
+bounded extension of boundary restriction for smooth functions;
+$H_0^1(\Omega)$ is precisely its kernel.
 For this coercive solvability argument with a negative zeroth-order
 coefficient, see \cite[Example 4.14, p.~100]{Hunter}; the displayed
 estimate verifies its hypothesis using the optimal Dirichlet constant.
@@ -360,10 +190,12 @@ integer $k$, and Sobolev embedding then gives
 $L\in C^\infty(\overline\Omega)$; see
 \cite[Theorem 4.31 and Corollary 4.32, p.~116]{Hunter}.
 
-Define $L^-=\max\{-L,0\}=(|L|-L)/2$. By
-\cref{fact:absolute-trace}, $|L|\in H_0^1(\Omega)$ because
-$L\in H_0^1(\Omega)$; linearity of this space therefore gives
-$L^-\in H_0^1(\Omega)$. Almost everywhere on $\{L<0\}$,
+Define $L^-=\max\{-L,0\}=(|L|-L)/2$. Absolute values preserve
+$H^1(\Omega)$ and commute with the trace, so $|L|\in H_0^1(\Omega)$
+because $L\in H_0^1(\Omega)$. Thus $L^-\in H_0^1(\Omega)$.
+The Sobolev chain rule gives
+$\nabla L^-=-\mathbf1_{\{L<0\}}\nabla L$ almost everywhere.
+Almost everywhere on $\{L<0\}$,
 $L=-L^-$ and $\nabla L=-\nabla L^-$; on its complement $L^-$ and
 $\nabla L^-$ vanish almost everywhere. Taking $\eta=L^-$ in
 \cref{eq:L-weak} therefore gives
@@ -377,14 +209,22 @@ Consequently
 \]
 In fact $L>0$ in $\Omega$: an interior zero would be a local minimum
 of the smooth nonnegative function $L$, where $\Delta L\ge0$, contrary
-to the displayed equation. Apply \cref{fact:hopf} to $u=-L$, which satisfies $u<0$ inside, $u=0$ on the boundary,
-and $\Delta u=1+\lambda_NL>0$. The smooth boundary satisfies the
-interior sphere condition, so
+to the displayed equation. Put $u=-L$. Then $u$ is smooth up to the
+boundary, $u<0$ in $\Omega$, $u=0$ on $\partial\Omega$, and
+$\Delta u=1+\lambda_NL>0$. At each $p\in\partial\Omega$, smoothness
+of the boundary gives the interior sphere condition: there is a ball
+$B_r(b)\subset\Omega$ tangent to $\partial\Omega$ at $p$.
+The Hopf boundary point lemma states that if a function is $C^2$ in
+the domain and $C^1$ up to the boundary, satisfies $\Delta u\ge0$ and
+$u<M$ in the domain, and has $u(p)=M$ at a boundary point satisfying
+the interior sphere condition, then $\partial_\nu u(p)>0$.
+Applied here with $M=0$,
+it gives $\partial_\nu u(p)>0$; see
+\cite[Lemma 2.21, p.~29]{Hunter}. Consequently,
 \begin{equation}\label{eq:L-normal}
  -\partial_\nu L>0\quad\text{on }\partial\Omega,
 \end{equation}
-where $\nu$ is the outward unit normal; see
-\cite[Lemma 2.21, p.~29]{Hunter}.
+where $\nu$ is the outward unit normal.
 
 For $v\in V$, the equations $-\Delta v=\lambda_Nv$ and
 $(-\Delta-\lambda_N)L=1$, followed by Green's identity, give
@@ -428,60 +268,6 @@ integral would be negative. Both contradict its zero weighted integral.
 Therefore $h_v$ takes both signs.
 \end{proof}
 
-\begin{fact}[Restrictions to sign components]\label[fact]{fact:sign-restriction}
-Let $v\in C^1(\Omega)\cap H^1(\Omega;\mathbb R)$, and let $U$ be a
-connected component of $\{v>0\}$ or $\{v<0\}$. Define
-$v_U=v\mathbf1_U$. Then $v_U\in H^1(\Omega)$ and
-\begin{equation}\label{eq:restriction-gradient}
- \nabla v_U=\mathbf1_U\nabla v\quad\text{almost everywhere in }\Omega.
-\end{equation}
-\end{fact}
-\begin{proof}
-Choose a ball $B$ with $\overline B\subset\Omega$. The function $v$ is
-Lipschitz on $B$, with constant $M=\sup_B|\nabla v|$. If $x,y\in B$
-both belong to $U$, the same Lipschitz estimate holds for $v_U$; if
-neither belongs to $U$, their $v_U$ values are both zero. If $x\in U$
-and $y\notin U$, the segment from $x$ to $y$ first exits $U$ at a point
-$z\in\partial U\cap B$. One has $v(z)=0$: continuity excludes the
-opposite sign, and a nonzero value of the same sign would give a small
-connected neighbourhood meeting $U$ and lying in the same sign set,
-contradicting $z\notin U$. Thus
-\[
- |v_U(x)-v_U(y)|=|v(x)-v(z)|\le M|x-z|\le M|x-y|.
-\]
-The remaining mixed case follows by exchanging $x$ and $y$. Hence
-$v_U$ is locally Lipschitz and has local weak derivatives.
-On $U$ its gradient equals $\nabla v$. At any point outside $U$ where
-$v\ne0$, it is locally zero: a sufficiently small connected ball is
-contained in one sign component. On $\{v=0\}$, the gradient of $v_U$
-is zero almost everywhere by the zero-level-set property in
-\cref{fact:absolute-trace}, applied locally to $v_U$.
-This proves \cref{eq:restriction-gradient}. Since
-$|v_U|\le|v|$ and $|\nabla v_U|\le|\nabla v|$ almost everywhere,
-the function and its local weak derivatives belong globally to $L^2$.
-The local distributional identities therefore give $v_U\in H^1(\Omega)$.
-\end{proof}
-
-\begin{fact}[Interior uniqueness for the Helmholtz equation]\label[fact]{fact:helmholtz-uniqueness}
-If $W\subset\mathbb R^2$ is connected and open, $\lambda\ge0$, and
-$f\in C^2(W)$ satisfies $-\Delta f=\lambda f$, then $f$ is real
-analytic. If $f$ vanishes on a nonempty open subset of $W$, it vanishes
-throughout $W$.
-\end{fact}
-\begin{proof}
-The function $F(x,t)=e^{\sqrt\lambda t}f(x)$ is harmonic on
-$W\times\mathbb R$, because
-$\Delta_{x,t}F=e^{\sqrt\lambda t}(\Delta_xf+\lambda f)=0$.
-Harmonic functions are real analytic
-\cite[Theorem 2.10, p.~24]{Hunter}, so restriction to $t=0$ makes $f$
-real analytic. For completeness, let $Z$ be the set of points of $W$
-where every derivative of $f$ vanishes. This set is relatively closed
-by continuity of all derivatives. At any point of $Z$, the convergent
-Taylor series makes $f$ zero in a neighbourhood, so $Z$ is also open.
-If $f$ vanishes on a nonempty open set, $Z$ is nonempty; connectedness
-then gives $Z=W$.
-\end{proof}
-
 \begin{fact}[Separation by a disk crosscut]\label[fact]{fact:crosscut}
 A crosscut of $\mathbb D$ is a simple arc $\alpha$, the image of a
 continuous injective map $[0,1]\to\overline{\mathbb D}$, whose distinct
@@ -513,9 +299,18 @@ cyclically ordered points with strictly alternating signs.
 \end{lemma}
 \begin{proof}
 Both sign sets are nonempty: $v$ is continuous, nonzero and has mean
-zero. For any component $U$ of either sign set, \cref{fact:sign-restriction}
-gives $v_U\in H^1(\Omega)$ and its weak gradient. We may therefore
-take $\psi=v_U$ in \cref{eq:V-weak}, obtaining
+zero. For any component $U$ of either sign set, define
+$v_U=v\mathbf1_U$. The standard nodal-domain restriction result gives
+$v_U\in H^1(\Omega)$; see \cite[Lemma 3.6, equation (3.1)]{Kluitenberg},
+specialized to the Euclidean Laplacian with Neumann boundary conditions.
+Its weak gradient satisfies
+\begin{equation}\label{eq:restriction-gradient}
+ \nabla v_U=\mathbf1_U\nabla v\quad\text{almost everywhere in }\Omega.
+\end{equation}
+Indeed, the gradients agree on $U$, and the weak gradient of a real
+$H^1$ function vanishes almost everywhere on its zero set. Applied to
+$v_U$, this gives $\nabla v_U=0$ almost everywhere on $\{v_U=0\}$.
+We may therefore take $\psi=v_U$ in \cref{eq:V-weak}, obtaining
 \begin{equation}\label{eq:component-energy}
  \int_\Omega|\nabla v_U|^2
  =\lambda_N\int_\Omega v_U^2.
@@ -537,9 +332,13 @@ Thus \cref{eq:component-energy} gives
  \int_\Omega|\nabla f|^2=\lambda_N\int_\Omega f^2.
 \]
 By \cref{fact:neumann-equality}, $f$ is a weak Neumann eigenfunction.
-Elliptic regularity makes it smooth in the interior. It vanishes on
-$U_3$, so \cref{fact:helmholtz-uniqueness} forces $f=0$ throughout
-the connected domain $\Omega$, a contradiction. There are therefore
+Elliptic regularity makes it smooth in the interior, where
+$-\Delta f=\lambda_N f$. Since $f$ vanishes on the nonempty open set
+$U_3$, unique continuation for this elliptic equation forces $f=0$
+throughout the connected domain $\Omega$; see
+\cite[Theorem, pp.~235--236]{Aronszajn}. Here the principal coefficients
+are constant and the zeroth-order coefficient is bounded, so the
+theorem applies. This is a contradiction. There are therefore
 exactly two sign components, one positive and one negative.
 
 For the boundary assertion, put $\widehat v=v\circ\Phi$ on
