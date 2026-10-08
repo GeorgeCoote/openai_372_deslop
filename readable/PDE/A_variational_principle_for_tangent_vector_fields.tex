@@ -1,0 +1,329 @@
+% Included by main.tex; the preamble and references are shared.
+\section{A variational principle for tangent vector fields}\label{sec:vector-fields}
+
+For $X\in H^1(\Omega;\mathbb R^2)$, \emph{tangent trace} means
+$\operatorname{Tr}X\cdot\nu=0$ almost everywhere on $\partial\Omega$;
+see \cite[Theorem 1.1, p.~2]{Rohleder} for this boundary condition.
+For any $X\in H^1(\Omega;\mathbb R^2)$ define
+\[
+ Q(X)=\int_\Omega\bigl(|\operatorname{div}X|^2
+                         +|\operatorname{curl}X|^2\bigr),
+ \qquad \operatorname{curl}X=\partial_1X_2-\partial_2X_1.
+\]
+The following is the divergence--curl form of Rohleder's vector
+variational principle \cite[Theorem 1.1]{Rohleder}; see also \cite{Roh24}.
+We give its derivation,
+including the equality case.
+
+\begin{proposition}\label[proposition]{prop:vector-variational}
+For every $X\in H^1(\Omega;\mathbb R^2)$ with tangent trace,
+\begin{equation}\label{eq:vector-inequality}
+ Q(X)\ge\lambda_N\|X\|_2^2.
+\end{equation}
+Equality holds if and only if $X=\nabla v$ for some $v\in V$.
+\end{proposition}
+\begin{proof}
+We use the Sobolev integration-by-parts identity
+\begin{equation}\label{eq:sobolev-ibp}
+ \int_\Omega Y\cdot\nabla u
+ =-\int_\Omega u\,\operatorname{div}Y
+   +\int_{\partial\Omega}\operatorname{Tr}u\,
+        (\operatorname{Tr}Y\cdot\nu)\,d\sigma,
+\end{equation}
+valid for $u\in H^1(\Omega;\mathbb R)$ and
+$Y\in H^1(\Omega;\mathbb R^2)$. It follows from the classical divergence
+theorem by smooth approximation in $H^1$ and continuity of the trace
+into $L^2(\partial\Omega)$; see \cite[Theorem 1.46, Theorem 3.44,
+and Section 3.11]{Hunter}. The boundary product is integrable by
+Cauchy--Schwarz.
+
+First solve
+\begin{equation}\label{eq:potentials}
+ \begin{aligned}
+ \Delta v&=\operatorname{div}X,\qquad
+ \partial_\nu v=0,\qquad \int_\Omega v=0,\\
+ \Delta j&=\operatorname{curl}X,\qquad \operatorname{Tr}j=0.
+ \end{aligned}
+\end{equation}
+For the Neumann problem, the required compatibility condition is
+\[
+ \int_\Omega\operatorname{div}X
+ =\int_{\partial\Omega}\operatorname{Tr}X\cdot\nu\,d\sigma=0.
+\]
+Here we applied \cref{eq:sobolev-ibp} with $u=1$ and $Y=X$.
+On the closed mean-zero subspace
+\[
+ H=\left\{w\in H^1(\Omega;\mathbb R):\int_\Omega w=0\right\},
+\]
+the form $a(v,w)=\int_\Omega\nabla v\cdot\nabla w$ is continuous and
+coercive by the mean-zero Poincar\'e inequality. Since
+$\operatorname{div}X\in L^2(\Omega)$, Lax--Milgram
+\cite[Theorem 4.20, p.~103]{Hunter} gives a unique $v\in H$ such that
+\[
+ \int_\Omega\nabla v\cdot\nabla w
+ =-\int_\Omega(\operatorname{div}X)w\qquad(w\in H).
+\]
+Compatibility extends this identity to all $w\in H^1(\Omega;\mathbb R)$
+by subtracting their means. It is the weak formulation of the Neumann
+problem in \cref{eq:potentials}.
+Similarly, the Dirichlet Poincar\'e inequality makes $a$ coercive on
+$H_0^1(\Omega;\mathbb R)$, so Lax--Milgram gives a unique
+$j\in H_0^1(\Omega;\mathbb R)$ satisfying
+\[
+ \int_\Omega\nabla j\cdot\nabla w
+ =-\int_\Omega(\operatorname{curl}X)w
+ \qquad(w\in H_0^1(\Omega;\mathbb R)).
+\]
+No compatibility condition is needed for this Dirichlet problem.
+Boundary regularity gives $v,j\in H^2(\Omega)$; see
+\cite[Chapter III, Theorems 6.1 and 6.4]{Showalter}.
+
+Put $\nabla^\perp j=(-\partial_2j,\partial_1j)$.
+Tangential differentiation commutes with taking the trace for $H^2$
+functions on a smooth domain; this follows by smooth approximation and
+continuity of the trace maps. Thus the zero trace of $j$ implies that
+$\nabla^\perp j$ has tangent trace. Consequently
+\[
+ Z=X-\nabla v-\nabla^\perp j
+\]
+belongs to $H^1(\Omega;\mathbb R^2)$ and has tangent trace.
+The equations in \cref{eq:potentials} give
+$\operatorname{div}Z=\operatorname{curl}Z=0$. Its components are
+harmonic in distributions and hence smooth in the interior by Weyl's
+lemma. Simple connectivity therefore gives a smooth real interior
+potential $r$ with $Z=\nabla r$.
+
+For $M>0$, define $r_M=\max\{-M,\min\{r,M\}\}$, and write
+$s^+=\max\{s,0\}$.
+The weak derivative formulas for positive parts
+\cite[Proposition 3.22 and the subsequent discussion, pp.~57--58]{Hunter},
+applied locally to
+$r_M=r-(r-M)^++(-r-M)^+$, give
+\[
+ r_M\in H^1_{\mathrm{loc}}(\Omega),\qquad
+ \nabla r_M=\mathbf1_{\{|r|<M\}}Z\quad\text{almost everywhere}.
+\]
+Since $|r_M|\le M$, $\Omega$ is bounded, and $Z\in L^2(\Omega)$,
+it follows that $r_M\in H^1(\Omega)$.
+
+Fix a ball $B$ with $\overline B\subset\Omega$, and write $u_B$ and
+$u_\Omega$ for the averages over $B$ and $\Omega$. The usual mean-zero
+Poincar\'e inequality gives, for $u\in H^1(\Omega)$,
+\[
+ \begin{aligned}
+ |u_B-u_\Omega|
+ &\le |B|^{-1/2}\|u-u_\Omega\|_2,\\
+ \|u-u_B\|_2
+ &\le\left(1+\sqrt{\frac{|\Omega|}{|B|}}\right)
+       \|u-u_\Omega\|_2\\
+ &\le C_{\Omega,B}\|\nabla u\|_2.
+ \end{aligned}
+\]
+Applying this to $r_M$ and using $|r_M|\le|r|$ on $B$ yields
+\[
+ \|r_M\|_2
+ \le C_{\Omega,B}\|Z\|_2
+       +|\Omega|^{1/2}|(r_M)_B|
+ \le C_{\Omega,B}\|Z\|_2
+       +|\Omega|^{1/2}\sup_B|r|.
+\]
+The bound is independent of $M$. Since $r_M\to r$ pointwise, Fatou's
+lemma gives $r\in L^2(\Omega)$. Moreover, for every
+$\phi\in C_c^\infty(\Omega)$,
+\[
+ \int_\Omega r\,\partial_i\phi=-\int_\Omega Z_i\phi
+ \qquad(i=1,2),
+\]
+by the interior identity $\nabla r=Z$. Thus the global weak gradient of
+$r$ is $Z$, and $r\in H^1(\Omega)$. This establishes its global
+integrability using only the interior potential and $Z\in L^2$.
+Applying \cref{eq:sobolev-ibp} with $u=r$ and $Y=Z$ now gives
+\[
+ \int_\Omega|\nabla r|^2
+ =\int_\Omega Z\cdot\nabla r
+ =-\int_\Omega r\,\operatorname{div}Z
+   +\int_{\partial\Omega}\operatorname{Tr}r\,
+        (\operatorname{Tr}Z\cdot\nu)\,d\sigma=0.
+\]
+Hence $Z=0$, and
+\begin{equation}\label{eq:decomposition}
+ X=\nabla v+\nabla^\perp j.
+\end{equation}
+The summands are orthogonal in $L^2$, since
+\[
+ \int_\Omega\nabla v\cdot\nabla^\perp j
+ =-\int_\Omega v\,\operatorname{div}(\nabla^\perp j)
+   +\int_{\partial\Omega}\operatorname{Tr}v\,
+       (\operatorname{Tr}\nabla^\perp j\cdot\nu)\,d\sigma=0.
+\]
+Consequently
+\[
+ \|X\|_2^2=\|\nabla v\|_2^2+\|\nabla j\|_2^2,
+ \qquad Q(X)=\|\Delta v\|_2^2+\|\Delta j\|_2^2.
+\]
+
+Integration by parts, Cauchy--Schwarz, and the two Poincar\'e inequalities
+give
+\[
+ \begin{aligned}
+ \|\nabla v\|_2^2
+ &=-\int_\Omega v\,\Delta v
+ \le\|v\|_2\|\Delta v\|_2\\
+ &\le\lambda_N^{-1/2}\|\nabla v\|_2\|\Delta v\|_2,\\
+ \|\nabla j\|_2^2
+ &=-\int_\Omega j\,\Delta j
+ \le\|j\|_2\|\Delta j\|_2\\
+ &\le\lambda_D^{-1/2}\|\nabla j\|_2\|\Delta j\|_2.
+ \end{aligned}
+\]
+The boundary terms vanish because $\partial_\nu v=0$ and
+$\operatorname{Tr}j=0$, respectively. The last inequalities use the
+zero mean of $v$ and the zero trace of $j$. Dividing by the gradient
+norms when nonzero, with the zero cases immediate, gives
+\[
+ \|\Delta v\|_2^2\ge\lambda_N\|\nabla v\|_2^2,
+ \qquad
+ \|\Delta j\|_2^2\ge\lambda_D\|\nabla j\|_2^2.
+\]
+It follows that
+\begin{equation}\label{eq:vector-refined}
+ \begin{aligned}
+ Q(X)&\ge\lambda_N\|\nabla v\|_2^2
+              +\lambda_D\|\nabla j\|_2^2\\
+ &=\lambda_N\|X\|_2^2
+              +(\lambda_D-\lambda_N)\|\nabla j\|_2^2.
+ \end{aligned}
+\end{equation}
+This proves \cref{eq:vector-inequality}.
+
+Suppose equality holds in \cref{eq:vector-inequality}.
+Since $\lambda_D>\lambda_N$, \cref{eq:vector-refined} forces
+$\nabla j=0$, and the zero trace gives $j=0$. Thus $X=\nabla v$ and
+$\|\Delta v\|_2^2=\lambda_N\|\nabla v\|_2^2$.
+If $\nabla v\ne0$, the preceding chain becomes
+\[
+ \begin{aligned}
+ \|\nabla v\|_2^2
+ &\le\|v\|_2\|\Delta v\|_2\\
+ &\le\lambda_N^{-1/2}\|\nabla v\|_2\|\Delta v\|_2
+ =\|\nabla v\|_2^2.
+ \end{aligned}
+\]
+Both inequalities are equalities, so
+$\|\nabla v\|_2^2=\lambda_N\|v\|_2^2$.
+The equality characterization of the mean-zero Neumann variational
+inequality (Fact~2.2 of the spectral and planar preliminaries) gives
+\cref{eq:V-weak}, hence $v\in V$.
+If $\nabla v=0$, its zero mean gives $v=0\in V$.
+
+Conversely, if $v\in V$, then $X=\nabla v$ belongs to
+$H^1(\Omega;\mathbb R^2)$ and has tangent trace because
+$\partial_\nu v=0$. Also $\operatorname{curl}X=0$ and
+$\operatorname{div}X=\Delta v=-\lambda_Nv$, so
+\[
+ Q(X)=\lambda_N^2\|v\|_2^2
+      =\lambda_N\|\nabla v\|_2^2
+      =\lambda_N\|X\|_2^2,
+\]
+where the middle equality follows by testing \cref{eq:V-weak} with $v$.
+\end{proof}
+
+For a differential-form interpretation of the divergence--curl energy,
+see \cite[Section 5.1]{FGM26}.
+
+We next record the boundary identity in fixed Cartesian coordinates.
+Let $\tau=(-\nu_2,\nu_1)$ be the counterclockwise unit tangent, and set
+\[
+ \kappa=\det(\tau,\partial_\tau\tau).
+\]
+Thus $\kappa$ is positive on a convex circle. Here
+$|\nabla X|^2=\sum_{i,j=1}^2(\partial_iX_j)^2$.
+
+\begin{lemma}\label[lemma]{lem:curvature-identity}
+For every $X\in H^1(\Omega;\mathbb R^2)$ with tangent trace,
+\begin{equation}\label{eq:curvature-identity}
+ Q(X)=\int_\Omega|\nabla X|^2
+       +\int_{\partial\Omega}\kappa|\operatorname{Tr}X|^2\,d\sigma.
+\end{equation}
+\end{lemma}
+\begin{proof}
+First suppose $X\in C^\infty(\overline\Omega;\mathbb R^2)$, without
+imposing tangency. Expanding the bulk integrands gives
+\[
+ \begin{aligned}
+ &|\operatorname{div}X|^2+|\operatorname{curl}X|^2-|\nabla X|^2\\
+ &\quad=(\partial_1X_1+\partial_2X_2)^2
+        +(\partial_1X_2-\partial_2X_1)^2\\
+ &\qquad\quad-\sum_{i,j=1}^2(\partial_iX_j)^2\\
+ &\quad=2\bigl(\partial_1X_1\,\partial_2X_2
+              -\partial_1X_2\,\partial_2X_1\bigr)
+        =2\det\nabla X.
+ \end{aligned}
+\]
+Put
+\[
+ F=\bigl(X_1\partial_2X_2-X_2\partial_2X_1,\,
+         X_2\partial_1X_1-X_1\partial_1X_2\bigr).
+\]
+The mixed second derivatives cancel, so
+$\operatorname{div}F=2\det\nabla X$. On the boundary,
+\[
+ F\cdot\nu=X_1\partial_\tau X_2-X_2\partial_\tau X_1.
+\]
+The divergence theorem therefore gives
+\begin{equation}\label{eq:smooth-boundary-pairing}
+ Q(X)-\int_\Omega|\nabla X|^2
+ =\int_{\partial\Omega}
+   \bigl(X_1\partial_\tau X_2-X_2\partial_\tau X_1\bigr)\,d\sigma.
+\end{equation}
+
+For $h=(h_1,h_2)\in H^{1/2}(\partial\Omega;\mathbb R^2)$, define
+\[
+ B(h)=\langle\partial_\tau h_2,h_1\rangle
+       -\langle\partial_\tau h_1,h_2\rangle,
+\]
+where the brackets denote the real $H^{-1/2}$--$H^{1/2}$ duality
+pairing, agreeing with the boundary integral for smooth functions.
+Tangential differentiation is bounded from $H^{1/2}(\partial\Omega)$
+to $H^{-1/2}(\partial\Omega)$, so $B$ is continuous on $H^{1/2}$.
+Choose $X_n\in C^\infty(\overline\Omega;\mathbb R^2)$ converging to
+$X\in H^1(\Omega;\mathbb R^2)$ in $H^1$. Their traces converge to
+$h=\operatorname{Tr}X$ in $H^{1/2}$, hence
+$B(\operatorname{Tr}X_n)\to B(h)$. The bulk integrals also converge,
+since the first derivatives converge in $L^2$. Passing to the limit in
+\cref{eq:smooth-boundary-pairing} gives
+\begin{equation}\label{eq:sobolev-boundary-pairing}
+ Q(X)-\int_\Omega|\nabla X|^2=B(h).
+\end{equation}
+The approximating fields need not have tangent trace.
+
+Now suppose $h$ is tangent, and put $a=h\cdot\tau$, so $h=a\tau$.
+Multiplication by the smooth components of $\tau$ preserves $H^{1/2}$,
+and hence $a\in H^{1/2}(\partial\Omega;\mathbb R)$.
+First take $a$ smooth. The product rule gives
+\[
+ \begin{aligned}
+ B(a\tau)
+ &=\int_{\partial\Omega}
+   \bigl[a\tau_1\partial_\tau(a\tau_2)
+         -a\tau_2\partial_\tau(a\tau_1)\bigr]\,d\sigma\\
+ &=\int_{\partial\Omega}
+       a^2\det(\tau,\partial_\tau\tau)\,d\sigma
+ =\int_{\partial\Omega}\kappa a^2\,d\sigma,
+ \end{aligned}
+\]
+because the terms containing $a\,\partial_\tau a$ cancel.
+For general $a\in H^{1/2}$, choose smooth $a_n\to a$ in $H^{1/2}$.
+Then $a_n\tau\to a\tau$ in $H^{1/2}$, so continuity of $B$ gives
+$B(a_n\tau)\to B(a\tau)$. Also $a_n\to a$ in $L^2$, and
+\[
+ \|a_n^2-a^2\|_{L^1(\partial\Omega)}
+ \le\|a_n-a\|_{L^2(\partial\Omega)}
+      \bigl(\|a_n\|_{L^2(\partial\Omega)}
+            +\|a\|_{L^2(\partial\Omega)}\bigr)\to0.
+\]
+Since $\kappa$ is bounded, we may pass to the limit to obtain
+$B(a\tau)=\int_{\partial\Omega}\kappa a^2\,d\sigma$.
+Finally $|h|^2=a^2$, and \cref{eq:sobolev-boundary-pairing} proves
+\cref{eq:curvature-identity}.
+\end{proof}

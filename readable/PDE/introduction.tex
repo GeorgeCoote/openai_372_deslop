@@ -1,0 +1,269 @@
+\section{Introduction}\label{sec:introduction}
+
+This document revises the exposition of a proposed proof in the supplied
+manuscript. George Coote's purpose in working with GPT 6.1 Sol was to make
+that argument readable enough for him and others to examine its
+mathematical validity without having to reconstruct numerous omitted
+steps. The main statements and proof strategy were already present in
+the supplied text. The revision expands definitions, calculations,
+references, and logical transitions; it does not claim that Coote
+originated the result or its proof, or that the proposed proof has been
+independently verified. The following introduction describes the claim
+and the argument presented for it.
+
+The hot-spots problem arose from Rauch's discussion of the long-time
+behavior of heat flow with insulating boundary conditions \cite{Rau75}.
+Its spectral formulation asks whether the extrema of a first-positive
+Neumann eigenfunction occur on the boundary. Ba\~nuelos and Burdzy
+distinguished strict and nonstrict formulations, and assertions about
+every eigenfunction from the existence of one favorable eigenfunction
+\cite{BanuelosBurdzy}. These distinctions matter when the eigenvalue is multiple.
+
+Let $\Omega\subset\mathbb R^2$ be a nonempty bounded simply connected open
+set with $C^\infty$ boundary. In particular, $\Omega$ is connected. Set
+\begin{equation}\label{eq:first-neumann-eigenvalue}
+ \lambda_N=\inf_{\substack{0\ne v\in H^1(\Omega;\mathbb R)\\
+                            \int_\Omega v=0}}
+ \frac{\int_\Omega|\nabla v|^2}{\int_\Omega v^2},
+\end{equation}
+and let $V$ be the real Neumann eigenspace for $\lambda_N$.
+This is the first positive eigenvalue; sources that count the constant
+eigenfunction first call it the second Neumann eigenvalue.
+
+The supplied manuscript claims the following theorem.
+\begin{samepage}
+\begin{theorem}\label[theorem]{thm:strict-hot-spots}
+For every $0\ne u\in V$,
+\[
+ \nabla u(x)\ne0\qquad(x\in\Omega).
+\]
+In particular,
+\begin{equation}\label{eq:strict-hot-spots}
+ \min_{y\in\partial\Omega}u(y)<u(x)<\max_{y\in\partial\Omega}u(y)
+ \qquad(x\in\Omega).
+\end{equation}
+\end{theorem}
+\end{samepage}
+
+The theorem imposes no convexity or symmetry condition. It applies to
+every member of the first positive eigenspace, including when the
+eigenvalue is multiple. The nonvanishing-gradient conclusion also rules
+out interior saddle points.
+
+\paragraph{Background and methods.}
+Topology matters in the hot-spots problem. Burdzy and Werner constructed
+a planar counterexample with two holes and a simple first-positive
+eigenvalue \cite{BW99}. Bass and Burdzy obtained examples with both extrema
+strictly in the interior \cite{BB00}, and Burdzy subsequently obtained
+this behavior with just one hole \cite{Bur05}. The simply connected
+planar conjecture is stated explicitly in \cite[Conjecture 1.2(ii)]{Bur05}.
+
+Several geometric special cases already establish strong gradient
+conclusions. Jerison and Nadirashvili proved a positive directional
+derivative for every first-positive eigenfunction on convex planar domains
+with two orthogonal reflection symmetries, allowing multiple eigenvalues
+\cite[Theorem 1.4]{JN00}. Probabilistic coupling methods developed by
+Ba\~nuelos and Burdzy \cite{BanuelosBurdzy} led to further results. Pascu
+proved boundary-only extrema for antisymmetric eigenfunctions on
+$C^{1,\alpha}$ convex planar domains with one reflection symmetry, where
+$0<\alpha<1$ \cite{Pas02}. Atar and Burdzy treated every first-positive
+eigenfunction on lip domains, a class of Lipschitz domains bounded between
+graphs of functions with Lipschitz constants at most one \cite{AB04}.
+Miyamoto obtained interior critical-point exclusion under a
+spectral-diameter condition, giving nonsymmetric nearly circular convex
+examples \cite[Lemma 1.2 and Theorem A]{Miy07}.
+
+For polygons, Siudeja proved hot-spots results for a class of acute
+triangles \cite{Siu15}. Judge and Mondal, with their subsequent erratum,
+excluded interior critical points for every first-positive Neumann
+eigenfunction on every Euclidean triangle \cite{JM20,JM22}. Chen, Gui and
+Yao established the finer classification of nonvertex critical points
+\cite{CGY26}. These results concern domains with corners;
+\cref{thm:strict-hot-spots} concerns smooth simply connected planar domains.
+
+Recent quantitative work measures how far the hot-spots conclusion can
+fail. For general bounded connected Lipschitz domains, de Dios Pont, Hsu
+and Taylor determined the sharp dimension-dependent upper bound for the
+ratio of a first-positive Neumann eigenfunction's supremum over the domain
+to its maximum on the boundary \cite[Definition 1 and Theorem 4]{dDPHT25}.
+Deng, Jiang and Yang obtained quantitative bounds for convex domains in
+two-dimensional space forms \cite{DJY26}. Such ratios concern extrema;
+excluding every interior critical point also requires excluding saddle points.
+
+The supplied proof starts from Rohleder's variational principle for tangent vector
+fields \cite{Rohleder,Roh24}. In its lip-domain application, taking
+componentwise absolute values after a suitable rotation preserves the
+required tangent boundary condition and yields directional monotonicity.
+Its argument uses scalar boundary multipliers to keep tangency on an
+arbitrary smooth boundary, constructing those multipliers through a
+reciprocal Green-kernel theorem.
+
+Each Cartesian derivative of an eigenfunction solves the same Helmholtz
+equation, but its boundary values need not have a fixed sign. The Neumann
+condition constrains the two derivatives together: their vector is tangent
+to the boundary. The argument uses that constraint through a nonnegative quadratic
+form on tangent boundary data. Its nullspace consists exactly of the
+boundary traces of first-positive eigenfunction gradients. The kernel
+construction supplies scalar boundary multipliers that preserve this nullspace if an
+interior critical point exists.
+
+\paragraph{The mechanism.}
+Write $\mathbb D=\{z\in\mathbb C:|z|<1\}$ and $S^1=\partial\mathbb D$,
+and let $\Phi:\overline{\mathbb D}\to\overline\Omega$ be a smooth
+conformal parametrization. For a tangent vector field $X$, the
+divergence--curl energy $Q(X)$ is at least $\lambda_N\|X\|_2^2$, with equality
+exactly for gradients of functions in $V$; see \cref{prop:vector-variational}.
+After the conformal change of variables, solving the scalar Helmholtz
+equation in each fixed Cartesian component extends Lipschitz boundary
+data $h:S^1\to\mathbb R^2$ to a vector field $X_h$ on $\Omega$.
+For tangent data, the quadratic form
+\[
+ E(h)=Q(X_h)-\lambda_N\|X_h\|_2^2
+\]
+is nonnegative, and it vanishes exactly when $X_h=\nabla v$ for some
+$v\in V$. Here tangency at $s$ means tangency to $\partial\Omega$ at
+$\Phi(s)$. For a nonzero eigenfunction $u\in V$, put
+$g(s)=\nabla u(\Phi(s))$. This is the gradient in the coordinates of
+$\Omega$, parametrized on the circle. Its extension is $X_g=\nabla u$,
+so $E(g)=0$, and a real Lipschitz scalar multiplier $b$ satisfies
+\[
+ E(bg)=\frac12\iint_{S^1\times S^1}
+ N(s,t)(b(s)-b(t))^2g(s)\cdot g(t)\,ds\,dt.
+\]
+Here $N$ is a symmetric boundary kernel, strictly positive off the
+diagonal, and the corresponding interior
+evaluation kernel is denoted by $K$; see \cref{prop:multiplier-identity}.
+
+The sign of $g(s)\cdot g(t)$ prevents a direct positivity argument in
+this identity. The kernel theorem supplies multipliers whose squared
+differences remove the factor $N$. For every interior point $p$,
+\[
+ D_p(s,t)=\frac{K(p,s)K(p,t)}{N(s,t)}\quad(s\ne t),
+ \qquad D_p(s,s)=0,
+\]
+is conditionally negative semidefinite. \Cref{lem:hilbert-embedding}
+constructs a separable real Hilbert space and an injective Lipschitz map
+$b$ from the circle into that space, with squared distances $D_p$.
+The construction uses the positive anchored kernel, a quotient by the
+zero-norm subspace, and completion; the kernel estimates give injectivity
+and the Lipschitz bound. Applying the energy identity to the coordinates
+$b_j$ of $b$ in an orthonormal basis, and justifying the sum by dominated
+convergence, gives
+\[
+ \sum_j E(b_jg)=\frac12|\nabla u(\Phi(p))|^2.
+\]
+At a critical point every nonnegative summand vanishes. The equality case
+then gives $v_j\in V$ with boundary gradient $b_jg$. If the set
+$S_g=\{s:g(s)\ne0\}$ is dense in the circle, injectivity of $b$ produces
+three linearly independent eigenfunctions, contradicting
+\cref{prop:multiplicity}. If $S_g$ is not dense, the gradients vanish
+on an open boundary arc. Two independent eigenfunctions then have a
+nonzero linear combination with both zero value and zero normal
+derivative on that arc. Its local extension by zero solves the Helmholtz
+equation across the arc, and interior uniqueness gives the contradiction.
+
+The construction of $D_p$ is the central analytic step. It first
+regularizes the disk Green function so that the entrywise reciprocal of
+every finite kernel matrix has at most one positive eigenvalue. This
+property survives successive rank-one updates along columns of the
+current kernel matrix, which sum the Green resolvent over a finite set of
+integration nodes. Positive quadrature and monotone limits then pass from
+those matrices to the singular Green kernel and finally to its boundary
+kernels. Taking the boundary limit before removing a compact-support
+cutoff avoids treating a Poisson kernel as an $L^2$ function when it need
+not be one.
+
+The kernel theorem, \cref{thm:squared-distance}, holds for every bounded
+nonnegative disk potential satisfying a weighted Dirichlet inequality
+with constant $d<1$, independently of the conformal origin of that
+potential. The conformal potential satisfies this condition by
+\cref{eq:weighted-dirichlet}. The reciprocal-matrix condition is related
+to the McCullough--Quiggin characterization of complete Nevanlinna--Pick
+kernels \cite{McC92,McC94,Qui93,Qui94}; see also
+\cite[Corollary 1.12]{AglerMcCarthy}. The condition used here requires at most one positive
+eigenvalue in each finite sampled reciprocal matrix, allowing zero
+diagonal entries in the limiting matrix. This condition concerns finite
+matrices, rather than reciprocals of integral operators.
+Schoenberg's squared-distance correspondence underlies the Hilbert-space
+construction proved in \cref{lem:hilbert-embedding} \cite{Sch38}.
+The analytic work here concerns the singular Green kernel, its
+positive-potential resolvent, and its boundary limit.
+
+\paragraph{Organization and background.}
+\Cref{sec:preliminaries} proves the spectral gap, the smooth conformal
+reduction, and the multiplicity bound. \Cref{sec:vector-fields} proves
+the vector variational principle. \Cref{sec:boundary-kernels} constructs
+the boundary kernels and derives the multiplier identity.
+\Cref{sec:reciprocal-green} proves their conditional negativity, and
+\Cref{sec:hilbert-multipliers} completes the argument.
+The argument relies on Sobolev compactness, Poincar\'e and trace inequalities on smooth
+bounded domains, Poisson solvability and elliptic boundary regularity,
+the maximum and boundary point principles, elementary complex analysis,
+and planar separation. The later sections give detailed arguments for
+the specialized ingredients.
+The smooth-boundary regularity input is
+\cite[Chapter III, Theorems 6.1, 6.4 and 6.5]{Showalter}: $L^2$ Poisson
+data give $H^2$ solutions under homogeneous Dirichlet or Neumann
+conditions, and higher regularity follows with smoother data.
+Subtracting a smooth extension handles the inhomogeneous Dirichlet data
+used below. Bootstrap and Sobolev embedding make weak Neumann
+eigenfunctions smooth up to the boundary. Interior solutions of
+$(\Delta+\lambda_N)v=0$ are analytic; alternatively,
+$e^{\sqrt{\lambda_N}t}v(x)$ is harmonic in one additional variable,
+as shown in \cref{fact:helmholtz-uniqueness}.
+
+\paragraph{Human revision and use of GPT 6.1 Sol.}
+The exposition in \cref{sec:preliminaries,sec:vector-fields,sec:boundary-kernels,sec:reciprocal-green,sec:hilbert-multipliers}
+was developed through a passage-by-passage revision directed by George
+Coote, using OpenAI's GPT 6.1 Sol. The aim was to reduce the effort
+needed to understand and review the supplied proof. Coote
+selected the scope and pace of the work, identified compressed or
+ambiguous arguments, challenged terminology and unsupported transitions,
+and decided which explanations and calculations should enter the text.
+The revision consistently uses $\lambda_N$ for the first positive
+Neumann eigenvalue and makes the test spaces, trace conditions, equality
+cases, and dependencies between results explicit.
+
+In \cref{sec:preliminaries}, this scrutiny led to fuller explanations of
+variational equality and plane-wave independence, smooth conformal
+boundary regularity, the boundary-sign argument, and the multiplicity
+bound. Coote required the planar separation argument to rest
+on a precise crosscut statement and proof, with the figure serving as an
+illustration. In \cref{sec:vector-fields}, the revisions explain the
+construction and compatibility of the Neumann and Dirichlet potentials,
+the truncation and weak-gradient arguments, Sobolev integration by parts,
+and the equality case. They also expand the curvature identity and its
+passage from smooth fields to Sobolev data.
+
+In \cref{sec:boundary-kernels}, Coote requested explicit
+conformal changes of variables, weak solution and uniqueness arguments,
+kernel bounds, and justifications for exchanging integrals and sums.
+The revised energy calculation identifies the componentwise extensions,
+the Fourier normalization, curvature cancellation, and absolute
+integrability in the multiplier identity. In \cref{sec:reciprocal-green},
+Coote required a clear distinction between finite sampled
+matrices and integral operators, a literature comparison for the
+reciprocal condition, and explicit quadrature nodes, weights, matrix
+updates, and convergence arguments. The revision separates diagonal
+from off-diagonal boundary limits and explains the compact-support
+cutoff before its removal. In \cref{sec:hilbert-multipliers}, Coote
+requested the Hilbert-space construction, pointwise boundary
+gradient identities, the transfer of linear independence to
+eigenfunctions, and the integration-by-parts calculation for local zero
+extension. The final extrema argument explicitly uses the extreme value
+theorem and Fermat's stationary-point theorem from elementary calculus:
+at an interior local maximum or minimum, a differentiable function has
+zero gradient.
+
+GPT 6.1 Sol supplied much of the new mathematical prose, detailed
+derivations, supporting calculations, reference work, and LaTeX
+implementation in response to these interventions. Coote
+reviewed the proposed explanations, controlled their level of detail,
+and authorized successive additions. This account summarizes the
+section-by-section contribution records accompanying the source files;
+it describes the development of the revised exposition. The author line
+identifies Coote's work on this revision with GPT 6.1 Sol; it is not a
+claim that he discovered or proved the underlying result. The recorded
+mathematical checks were model-assisted reviews of the arguments. The
+purpose of making those arguments explicit is to enable further
+mathematical review, and their correctness remains to be assessed.

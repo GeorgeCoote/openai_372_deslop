@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+% Match the US Letter page and 1.08-inch margins of main (3).pdf.
+\usepackage[letterpaper,margin=1.08in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{tikz}
+\usepackage[hidelinks]{hyperref}
+
+% All sections share these environments and counters.
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}[lemma]{Proposition}
+\newtheorem{theorem}[lemma]{Theorem}
+\newtheorem{auxlemma}{Lemma}[section]
+\renewcommand{\theauxlemma}{\thesection.\Alph{auxlemma}}
+\theoremstyle{definition}
+\newtheorem{fact}{Fact}[section]
+\newtheorem{remark}[lemma]{Remark}
+\newtheorem{definition}{Definition}[section]
+\numberwithin{equation}{section}
+\setlength{\emergencystretch}{2em}
+
+\usepackage[nameinlink,noabbrev]{cleveref}
+\crefname{fact}{Fact}{Facts}
+\Crefname{fact}{Fact}{Facts}
+\crefname{auxlemma}{Lemma}{Lemmas}
+\Crefname{auxlemma}{Lemma}{Lemmas}
+\crefname{definition}{Definition}{Definitions}
+\Crefname{definition}{Definition}{Definitions}
+\crefname{theorem}{Theorem}{Theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{proposition}{Proposition}{Propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+
+\title{Strict hot spots and absence of interior critical points on smooth
+simply connected planar domains}
+\author{George Coote with GPT 6.1 Sol}
+% Date of the supplied manuscript.
+\date{September 24, 2026}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+This manuscript presents a readability revision of a proposed proof of
+the strict hot spots conjecture for smooth bounded simply connected planar
+domains. The claimed result is that every nonzero eigenfunction for the
+first positive Neumann eigenvalue has nonvanishing gradient in the
+interior, so all its global maxima and minima lie on the boundary,
+including when the eigenvalue is multiple. George Coote worked with
+GPT 6.1 Sol to expand and clarify the supplied argument so that he and
+other readers can review it with less effort. This revision does not
+constitute independent verification of the claimed result.
+\end{abstract}
+
+\input{introduction}
+\input{spectral_and_planar_preliminaries}
+\input{A_variational_principle_for_tangent_vector_fields}
+\input{Boundary_kernels_and_the_multiplier_identity}
+\input{Reciprocal_Green_functions_and_a_squared-distance_kernel}
+\input{Hilbert_multipliers_and_the_absence_of_critical_points}
+\input{bibliography}
+\end{document}

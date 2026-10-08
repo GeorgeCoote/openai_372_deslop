@@ -1,0 +1,297 @@
+% Included by main.tex; the preamble and references are shared.
+\section{Hilbert multipliers and the absence of critical points}\label{sec:hilbert-multipliers}
+
+Write $\mathbb D=\{z\in\mathbb C:|z|<1\}$ and
+$S^1=\partial\mathbb D$. We use the solution kernel $K$ and the
+boundary kernel $N$ constructed in \cref{sec:boundary-kernels}. \cref{sec:reciprocal-green} proves that,
+for each $p\in\mathbb D$, the symmetric kernel
+\[
+ D_p(s,t)=\frac{K(p,s)K(p,t)}{N(s,t)}\quad(s\ne t),
+ \qquad D_p(s,s)=0,
+\]
+is conditionally negative semidefinite on $S^1$. We now realize this
+kernel as squared distances in a real Hilbert space, following
+Schoenberg's classical correspondence \cite{Sch38}. The proof below
+gives the anchored Gram-kernel construction explicitly.
+
+\begin{lemma}\label[lemma]{lem:hilbert-embedding}
+For every $p\in\mathbb D$, there exist a separable real Hilbert space
+$\mathcal H$ and an injective Lipschitz map $b:S^1\to\mathcal H$ such that
+\begin{equation}\label{eq:hilbert-distance}
+ \|b(s)-b(t)\|_{\mathcal H}^2=D_p(s,t)
+ \qquad(s,t\in S^1).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Fix $p\in\mathbb D$ and $s_0\in S^1$, and define the anchored kernel
+\[
+ \Gamma(s,t)=\frac12\bigl(D_p(s,s_0)+D_p(t,s_0)-D_p(s,t)\bigr).
+\]
+To prove that $\Gamma$ is positive semidefinite, take any
+$s_1,\ldots,s_n\in S^1$ and $a_1,\ldots,a_n\in\mathbb R$.
+Put $A=\sum_{i=1}^n a_i$ and $a_0=-A$. Then
+$\sum_{i=0}^n a_i=0$, and symmetry and $D_p(s_0,s_0)=0$ give
+\begin{align*}
+ \sum_{i,j=1}^n a_i a_j\Gamma(s_i,s_j)
+ &=A\sum_{i=1}^n a_iD_p(s_i,s_0)
+   -\frac12\sum_{i,j=1}^n a_i a_jD_p(s_i,s_j)\\
+ &=-\frac12\sum_{i,j=0}^n a_i a_jD_p(s_i,s_j)
+ \ge0.
+\end{align*}
+The last inequality follows from conditional negative semidefiniteness.
+
+Let $F$ be the real vector space of finitely supported functions on
+$S^1$, and let $e_s\in F$ be the function equal to $1$ at $s$ and
+$0$ elsewhere. Define a symmetric bilinear form on $F$ by
+\[
+ B(f,g)=\sum_{s,t\in S^1}f(s)g(t)\Gamma(s,t).
+\]
+These sums are finite, and positive semidefiniteness of $\Gamma$ gives
+$B(f,f)\ge0$. Set
+\[
+ Z=\{f\in F:B(f,f)=0\}.
+\]
+The Cauchy--Schwarz inequality for positive semidefinite bilinear forms
+gives
+\[
+ |B(f,g)|^2\le B(f,f)B(g,g).
+\]
+Consequently, every element of $Z$ is orthogonal to all of $F$.
+Thus $Z$ is a linear subspace, and
+\[
+ \langle f+Z,g+Z\rangle=B(f,g)
+\]
+is a well-defined inner product on $F/Z$.
+
+Let $\mathcal H$ be the completion of this real inner product space,
+identify $F/Z$ with its canonical image in $\mathcal H$, and define
+\[
+ b:S^1\longrightarrow\mathcal H,\qquad b(s)=e_s+Z.
+\]
+Then $\langle b(s),b(t)\rangle_{\mathcal H}=\Gamma(s,t)$, so
+\[
+ \|b(s)-b(t)\|_{\mathcal H}^2
+ =\Gamma(s,s)+\Gamma(t,t)-2\Gamma(s,t)=D_p(s,t).
+\]
+Also $\Gamma(s_0,s_0)=0$, so $b(s_0)=0$.
+
+For distinct $s,t\in S^1$, the kernel estimates from \cref{sec:boundary-kernels} give
+\[
+ K(p,s)>0,\qquad K(p,t)>0,\qquad 0<N(s,t)<\infty.
+\]
+Hence
+\[
+ \|b(s)-b(t)\|_{\mathcal H}^2
+ =\frac{K(p,s)K(p,t)}{N(s,t)}>0.
+\]
+Thus $b(s)\ne b(t)$, proving injectivity.
+
+Recall from \cref{sec:boundary-kernels} that
+\[
+ N(s,t)=N_0(s,t)+R(s,t),\qquad
+ N_0(s,t)=\frac1{\pi|s-t|^2},
+\]
+where $R(s,t)\ge0$. Here $N_0$ is the boundary kernel for the disk
+with zero potential. Therefore, for $s\ne t$,
+\begin{align*}
+ \|b(s)-b(t)\|_{\mathcal H}^2
+ &=\frac{K(p,s)K(p,t)}{N(s,t)}\\
+ &\le\frac{K(p,s)K(p,t)}{N_0(s,t)}\\
+ &=\pi K(p,s)K(p,t)|s-t|^2\\
+ &\le\pi\|K(p,\cdot)\|_\infty^2|s-t|^2.
+\end{align*}
+The estimate also holds when $s=t$, since both sides vanish.
+Taking square roots shows that $b$ is Lipschitz, with
+\[
+ \operatorname{Lip}(b)\le\sqrt\pi\,\|K(p,\cdot)\|_\infty.
+\]
+
+Finally, set
+\[
+ \mathcal H_0=\overline{\operatorname{span}_{\mathbb R}b(S^1)}
+ \subseteq\mathcal H.
+\]
+As a closed linear subspace of $\mathcal H$, the space $\mathcal H_0$
+is itself a real Hilbert space with the inherited inner product.
+Viewing $b$ as a map into $\mathcal H_0$ preserves its distances,
+injectivity, and Lipschitz bound. Since $S^1$ is separable and $b$ is
+Lipschitz, $b(S^1)$ and its closed linear span $\mathcal H_0$ are
+separable. We therefore use $\mathcal H_0$ as the Hilbert space
+in the statement.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:strict-hot-spots}]
+Let $V$ be the real Neumann eigenspace for the first positive eigenvalue
+$\lambda_N$, and take an arbitrary nonzero $u\in V$. Recall from
+\Cref{sec:boundary-kernels} that
+\[
+ g(s)=\nabla u(\Phi(s)),\qquad s\in S^1,
+ \qquad W_g=(\nabla u)\circ\Phi.
+\]
+Here the gradient is taken in the Cartesian coordinates of $\Omega$;
+$g$ is its boundary restriction parametrized by $\Phi$, rather than
+the gradient of $u\circ\Phi$. Elliptic regularity
+\cite[Chapter III, Theorems 6.4 and 6.5]{Showalter} gives
+$u\in C^\infty(\overline\Omega)$, so $g$ is smooth, and the Neumann
+condition makes $g(s)$ tangent to $\partial\Omega$ at $\Phi(s)$.
+
+Suppose $\Phi(p)$ is a critical point of $u$, for some $p\in\mathbb D$.
+Choose $b$ from \cref{lem:hilbert-embedding}, and let $b_j$ be its
+coordinates in a finite or countable orthonormal basis of $\mathcal H$.
+Each $b_j$ is real Lipschitz, so the multiplier identity from \cref{sec:boundary-kernels}
+applies to $b_jg$. For partial sums over the basis coordinates,
+\begin{align*}
+ &N(s,t)\sum_{j\le m}|b_j(s)-b_j(t)|^2|g(s)||g(t)|\\
+ &\qquad\le N(s,t)D_p(s,t)|g(s)||g(t)|\\
+ &\qquad=K(p,s)K(p,t)|g(s)||g(t)|
+ \qquad(s\ne t).
+\end{align*}
+The right-hand side is bounded and integrable on $S^1\times S^1$.
+Parseval's identity and dominated convergence therefore give
+\begin{align}
+ \sum_j E(b_jg)
+ &=\frac12\iint_{S^1\times S^1}
+       K(p,s)K(p,t)g(s)\cdot g(t)\,ds\,dt\notag\\
+ &=\frac12\left|\int_{S^1}K(p,s)g(s)\,ds\right|^2
+ =\frac12|W_g(p)|^2=0.
+ \label{eq:sum-multiplier-energies}
+\end{align}
+Here $ds,dt$ denote arclength on $S^1$, and the diagonal has product
+measure zero. In the finite-dimensional case the sums simply terminate.
+
+Every summand is nonnegative by \cref{prop:vector-variational}.
+Thus $E(b_jg)=0$ for every $j$. Its equality case, as expressed in
+\Cref{sec:boundary-kernels}, gives $v_j\in V$ such that
+\[
+ \nabla v_j(\Phi(s))=b_j(s)g(s)\qquad(s\in S^1).
+\]
+Initially this is an equality of boundary traces, holding almost
+everywhere. Elliptic regularity gives
+$v_j\in C^\infty(\overline\Omega)$, while $b_jg$ is continuous,
+so the equality holds at every boundary point. By the definition of
+$g$, we also have $\nabla u(\Phi(s))=g(s)$ for every $s\in S^1$.
+
+Set $S_g=\{s\in S^1:g(s)\ne0\}$. This set is open and nonempty.
+Indeed, if it were empty, both Cartesian derivatives of $u$ would
+vanish on $\partial\Omega$, since $\Phi(S^1)=\partial\Omega$.
+For $k=1,2$, put $w_k=\partial_k u$. Smoothness up to the boundary
+and zero boundary values give $w_k\in H_0^1(\Omega)$. Differentiating
+the eigenfunction equation yields
+\[
+ -\Delta w_k=\partial_k(-\Delta u)
+ =\lambda_N\partial_k u=\lambda_Nw_k.
+\]
+Testing with $w_k$ and using the Dirichlet variational inequality gives
+\[
+ \lambda_D\int_\Omega w_k^2
+ \le\int_\Omega|\nabla w_k|^2
+ =\lambda_N\int_\Omega w_k^2.
+\]
+Since $\lambda_N<\lambda_D$, both $w_k$ vanish. Connectedness of
+$\Omega$ then makes $u$ constant, and $-\Delta u=\lambda_Nu$ with
+$\lambda_N>0$ forces $u=0$, a contradiction.
+
+\medskip
+\noindent\emph{Case 1: $S_g$ is dense in $S^1$.}
+The set $b(S_g)$ cannot be contained in an affine line. Otherwise,
+density and continuity would place $b(S^1)$ in that closed line.
+But a continuous injective map from the circle into a line is
+impossible: its compact connected image would be a nondegenerate
+closed interval, and the map would be a homeomorphism onto that
+interval. Removing the preimage of an interior point would leave
+the circle connected but disconnect the interval.
+
+Choose $s_1,s_2,s_3\in S_g$ whose images under $b$ are affinely
+independent. Write $x=b(s_2)-b(s_1)$ and $y=b(s_3)-b(s_1)$.
+These vectors are linearly independent. Choose a coordinate $j$
+with $x_j\ne0$. Some coordinate $k$ satisfies
+$x_jy_k-x_ky_j\ne0$; otherwise $y_k=(y_j/x_j)x_k$ for every $k$,
+which would give $y=(y_j/x_j)x$. This nonzero determinant shows
+that $1,b_j,b_k$ are linearly independent on the three chosen points.
+Since $g(s_i)\ne0$, the functions $g,b_jg,b_kg:S^1\to\mathbb R^2$
+are linearly independent as well.
+
+Consequently, $u,v_j,v_k$ are linearly independent: any relation
+$\alpha u+\beta v_j+\gamma v_k=0$ would, after taking gradients
+and evaluating at $\Phi(s)$, give
+\[
+ \alpha g+\beta b_jg+\gamma b_kg=0.
+\]
+Independence of these boundary functions forces
+$\alpha=\beta=\gamma=0$. This contradicts the bound
+$\dim_{\mathbb R}V\le2$ proved in \cref{sec:preliminaries}.
+
+\medskip
+\noindent\emph{Case 2: $S_g$ is not dense in $S^1$.}
+There is a nonempty open arc $I\subset S^1$ on which $g=0$.
+Since $S_g$ is nonempty and open, it contains two distinct points.
+Injectivity of $b$ implies that some coordinate $b_j$ takes different
+values at these points, and hence is nonconstant on $S_g$.
+Thus $g$ and $b_jg$ are linearly independent: a relation
+$\alpha g+\beta b_jg=0$ implies $\alpha+\beta b_j(s)=0$ on $S_g$,
+and nonconstancy forces $\alpha=\beta=0$. The corresponding
+eigenfunctions $u,v_j$ are also linearly independent, since taking
+gradients and evaluating on the boundary would turn any relation
+between them into the same relation between $g$ and $b_jg$.
+
+Since $g=0$ on $I$, the identities $\nabla u\circ\Phi=g$ and
+$\nabla v_j\circ\Phi=b_jg$ show that both gradients vanish on
+$\Phi(I)$. In particular, both tangential derivatives vanish along
+this connected boundary arc, so $u$ and $v_j$ are each constant
+there. Denote their respective constants by $c_u,c_j$. Choose
+$(\alpha,\beta)\ne(0,0)$ such that $\alpha c_u+\beta c_j=0$, and set
+$w=\alpha u+\beta v_j$. Then $w=0$ on $\Phi(I)$.
+As $w\in V$, it satisfies the homogeneous Neumann condition
+$\partial_\nu w=0$ on all of $\partial\Omega$, and hence on this arc.
+
+The following construction is a local version of Filonov's
+zero-extension argument \cite[Lemma, p.~414]{Fil05}.
+Take a small connected neighborhood $U$ of an interior point of
+$\Phi(I)$ that meets no other boundary portion. Define
+$\widetilde w=w$ on $U\cap\Omega$ and $\widetilde w=0$ on
+$U\setminus\Omega$. For any $\varphi\in C_c^\infty(U)$, Green's
+identity gives
+\begin{align*}
+ \int_U\widetilde w(\Delta\varphi+\lambda_N\varphi)\,dx
+ &=\int_{U\cap\Omega}w(\Delta\varphi+\lambda_N\varphi)\,dx\\
+ &=\int_{U\cap\Omega}(\Delta w+\lambda_Nw)\varphi\,dx\\
+ &\quad+\int_{U\cap\partial\Omega}
+       (w\,\partial_\nu\varphi-\varphi\,\partial_\nu w)\,d\sigma
+ =0.
+\end{align*}
+The interior term vanishes because $w\in V$, and both boundary terms
+vanish because $w=\partial_\nu w=0$ on $U\cap\partial\Omega$.
+There are no contributions from the edge of $U$, since $\varphi$
+has compact support in $U$. Thus
+$(\Delta+\lambda_N)\widetilde w=0$ distributionally in $U$.
+
+Interior elliptic regularity makes $\widetilde w$ smooth in $U$.
+\Cref{fact:helmholtz-uniqueness} then implies that it is real analytic. Since it vanishes
+on the exterior open set $U\setminus\overline\Omega$, the same fact
+gives $\widetilde w=0$ throughout $U$.
+In particular, $w$ vanishes on the nonempty open subset $U\cap\Omega$.
+Since $w$ satisfies $-\Delta w=\lambda_Nw$ in the connected domain
+$\Omega$, \cref{fact:helmholtz-uniqueness} implies that $w=0$ throughout $\Omega$.
+But we chose $w=\alpha u+\beta v_j$ with $(\alpha,\beta)\ne(0,0)$.
+Thus $\alpha u+\beta v_j=0$ is a nontrivial linear relation between
+$u$ and $v_j$, contradicting their linear independence.
+
+Both cases contradict the assumed critical point. Hence $\nabla u$
+is nowhere zero in $\Omega$.
+Since $u$ is continuous on the compact set $\overline\Omega$, the
+extreme value theorem guarantees that it attains its maximum and
+minimum there. Fermat's stationary-point theorem from elementary calculus
+says that a differentiable function has zero gradient at an interior
+local maximum or minimum. Indeed, restricting the function to each
+coordinate line through that point gives a one-variable local extremum,
+so each partial derivative is zero. Thus any interior point attaining
+either extremum of $u$ would satisfy $\nabla u=0$. We have proved that no
+such point exists, so both extrema are attained on $\partial\Omega$.
+Moreover, equality with either boundary extremum at an interior
+point would make that point a global, hence local, extremum.
+Therefore
+\[
+ \min_{\partial\Omega}u<u(x)<\max_{\partial\Omega}u
+ \qquad(x\in\Omega).\qedhere
+\]
+\end{proof}

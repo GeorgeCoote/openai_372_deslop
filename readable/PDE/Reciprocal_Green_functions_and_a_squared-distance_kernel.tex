@@ -1,0 +1,1108 @@
+% Included by main.tex; the preamble and references are shared.
+\section[Reciprocal Green functions and a squared-distance kernel]
+{Reciprocal Green functions\\and a squared-distance kernel}\label{sec:reciprocal-green}
+
+Write $\mathbb D=\{z\in\mathbb C:|z|<1\}$ and $S^1=\partial\mathbb D$,
+and identify $\mathbb C$ with $\mathbb R^2$. We use the solution kernel
+$K$ and the boundary kernel $N$ constructed in \cref{sec:boundary-kernels}, under the
+measure assumptions restated below.
+
+A real symmetric kernel $H$ with zero diagonal is
+\emph{conditionally negative semidefinite} if
+\[
+ \sum_{i,j=1}^n b_i b_j H(s_i,s_j)\le0
+ \qquad\text{whenever }\sum_{i=1}^n b_i=0,
+\]
+for every finite family of points $s_i$ and real coefficients $b_i$.
+
+\begin{samepage}
+\begin{theorem}\label[theorem]{thm:squared-distance}
+Let $dq=a\,dx$ on $\mathbb D$, where $a\in L^\infty(\mathbb D)$ is
+nonnegative, and suppose that there is a constant $0<d<1$ such that
+\[
+ \int_{\mathbb D}|\psi|^2\,dq
+ \le d\int_{\mathbb D}|\nabla\psi|^2\,dx
+ \qquad(\psi\in H_0^1(\mathbb D)).
+\]
+For the associated kernels $K,N$ and every $p\in\mathbb D$, the kernel
+\begin{equation}\label{eq:squared-distance}
+ D_p(s,t)=\frac{K(p,s)K(p,t)}{N(s,t)}\quad(s\ne t),
+ \qquad D_p(s,s)=0,
+\end{equation}
+is conditionally negative semidefinite on $S^1$.
+\end{theorem}
+\end{samepage}
+
+\begin{remark}\label[remark]{rem:zero-potential}
+When $q=0$, one has $K(p,s)=P_s(p)$ and
+$N(s,t)=1/(\pi|s-t|^2)$, where
+\[
+ P_s(p)=\frac{1-|p|^2}{2\pi|s-p|^2}.
+\]
+The disk automorphism
+$\phi_p(z)=(z-p)/(1-\overline p z)$ maps $p$ to zero and maps
+$S^1$ onto itself. Direct subtraction gives
+\[
+ |\phi_p(s)-\phi_p(t)|^2
+ =\frac{(1-|p|^2)^2|s-t|^2}{|s-p|^2|t-p|^2}
+ \qquad(s,t\in S^1).
+\]
+Consequently
+\[
+ D_p(s,t)=\pi P_s(p)P_t(p)|s-t|^2
+        =\frac1{4\pi}|\phi_p(s)-\phi_p(t)|^2.
+\]
+Thus $D_p$ is the squared Euclidean distance between the transformed
+boundary points, multiplied by $1/(4\pi)$.
+\end{remark}
+
+For a real symmetric matrix $M$, let $n_+(M)$ denote its
+\emph{positive index of inertia}: the number of strictly positive
+eigenvalues, counted with multiplicity. For a real symmetric kernel $H$
+on a set $X$, the assertion $n_+(H)\le1$ means that
+\[
+ n_+\bigl([H(x_i,x_j)]_{i,j=1}^n\bigr)\le1
+\]
+for every finite set of distinct points $x_1,\ldots,x_n\in X$.
+It is a condition on finite sampled matrices. Likewise, a complex
+kernel is positive semidefinite if every finite sampled matrix is
+Hermitian positive semidefinite. Reciprocals and powers of kernels
+below are entrywise, rather than operator inverses or compositions.
+
+\begin{definition}[Reciprocal matrix condition]
+\label[definition]{def:reciprocal-matrix-condition}
+Let $H$ be a real symmetric kernel on $X$, with finite strictly
+positive values off the diagonal and strictly positive, possibly
+infinite, values on the diagonal. We say that $H$ satisfies the
+\emph{reciprocal matrix condition} if, for every finite set of
+distinct points $x_1,\ldots,x_n\in X$,
+\[
+ n_+(Q_H)\le1,\qquad
+ (Q_H)_{ij}=\frac1{H(x_i,x_j)},
+\]
+where $1/(+\infty)=0$.
+\end{definition}
+
+The condition in \cref{def:reciprocal-matrix-condition} is related to the
+McCullough--Quiggin characterization of complete Nevanlinna--Pick
+kernels \cite{McC94,Qui94}. For an irreducible positive semidefinite kernel with finite,
+nonzero entries, that characterization requires each finite reciprocal
+matrix to have exactly one positive eigenvalue
+\cite[Corollary 1.12]{AglerMcCarthy}. Here we use the weaker bound
+$n_+\le1$, which also accommodates zero diagonal entries and limits.
+For a reciprocal-matrix condition in an earlier Green-function setting,
+see \cite[Section 2.2, Corollary 2.2.2 and Theorem 2.2.3]{Qui94}.
+Invertible diagonal congruence preserves $n_+$ by Sylvester's law of
+inertia. Subtracting a positive semidefinite matrix cannot increase
+$n_+$: every subspace on which the difference is positive definite
+is also a positive subspace for the original matrix. The bound
+$n_+\le1$ also passes to principal submatrices and entrywise limits
+of matrices of a fixed finite size.
+For the latter assertion, use continuity of the ordered eigenvalues
+of a real symmetric matrix with respect to its entries.
+
+\begin{auxlemma}\label[auxlemma]{lem:rank-one-difference}
+Let $B,C$ be real symmetric positive semidefinite $n\times n$
+matrices, with $\operatorname{rank}C\le1$. Then
+\[
+ n_+(C-B)\le1.
+\]
+In particular, $n_+(uu^T-B)\le1$ for every $u\in\mathbb R^n$.
+\end{auxlemma}
+\begin{proof}
+For $b\in\ker C$,
+\[
+ b^T(C-B)b=-b^TBb\le0.
+\]
+Since $\ker C$ has codimension at most one, every subspace of
+dimension at least two meets it nontrivially. Thus $C-B$ cannot be
+positive definite on a two-dimensional subspace, so it has at most
+one positive eigenvalue. The particular case follows because
+$uu^T$ is positive semidefinite and has rank at most one.
+\end{proof}
+
+\subsection{A bounded regularization of the Green kernel}
+
+The Dirichlet Green function of the disk is
+\[
+ G(x,y)=\frac1{4\pi}\log\left(
+  1+\frac{(1-|x|^2)(1-|y|^2)}{|x-y|^2}\right)
+ \qquad(x\ne y),
+\]
+with $G(x,x)=+\infty$. A quadrature formula sampling $G$ at its
+integration nodes would encounter these infinite diagonal values.
+We therefore construct bounded replacements with finite positive
+diagonal satisfying the condition in
+\cref{def:reciprocal-matrix-condition}.
+
+\begin{lemma}\label[lemma]{lem:green-regularization}
+There are bounded continuous strictly positive kernels $C_\epsilon$
+on $\mathbb D\times\mathbb D$, $0<\epsilon\le1$, such that
+$C_\epsilon\uparrow G$ as $\epsilon\downarrow0$, including on the
+diagonal, and each $C_\epsilon$ satisfies the reciprocal matrix
+condition in \cref{def:reciprocal-matrix-condition}.
+\end{lemma}
+\begin{proof}
+Define the two-variable kernel
+\[
+ h(x,y)=\frac{|x-y|^2}{(1-|x|^2)(1-|y|^2)}.
+\]
+For a scalar argument $\tau\ge0$, define
+\[
+ L(\tau)=\frac1{\log(1+1/\tau)}\quad(\tau>0),\qquad L(0)=0,
+ \qquad f(\tau)=\tau+\frac12-L(\tau).
+\]
+Both scalar functions are continuous on $[0,\infty)$, and
+\[
+ \frac1{G(x,y)}=4\pi L(h(x,y)),
+\]
+with reciprocal zero on the diagonal.
+We will show that $n_+(h+\tfrac12)\le1$ and that the kernel
+$(x,y)\mapsto f(h(x,y))$ is positive semidefinite.
+
+For a finite set $x_1,\ldots,x_n$, put
+$A_{ij}=h(x_i,x_j)+\tfrac12$ and
+$W=\operatorname{diag}(1-|x_i|^2)$. Expanding $|x_i-x_j|^2$ gives
+\begin{equation}\label{eq:regularization-rank-one}
+ (WAW)_{ij}
+ =\frac12(1+|x_i|^2)(1+|x_j|^2)-2x_i\cdot x_j.
+\end{equation}
+The first term is the rank-one matrix $uu^T$, where
+$u_i=(1+|x_i|^2)/\sqrt2$, and the matrix $[2x_i\cdot x_j]$
+is a positive semidefinite Gram matrix. By
+\cref{lem:rank-one-difference}, $n_+(WAW)\le1$.
+Since $W$ is invertible, Sylvester's law of inertia gives $n_+(A)\le1$.
+
+For $\tau>0$, direct integration gives
+\begin{equation}\label{eq:logarithmic-mean-integral}
+ \begin{aligned}
+ \int_0^1\tau^{1-\alpha}(\tau+1)^\alpha\,d\alpha
+ &=\tau\int_0^1
+        \exp\bigl(\alpha\log(1+1/\tau)\bigr)\,d\alpha\\
+ &=\frac{\tau\bigl((1+1/\tau)-1\bigr)}{\log(1+1/\tau)}
+ =L(\tau).
+ \end{aligned}
+\end{equation}
+For related integral representations of the weighted geometric mean
+and the logarithmic mean, see \cite{QiZhangLi}. We derive the further
+representation needed here.
+
+For $0<\alpha<1$, let $\mathsf V_\alpha$ be a random variable with
+probability density
+\[
+ c_\alpha\frac{v^{\alpha-1}}{1+v}\quad(v>0),
+ \qquad
+ c_\alpha=\left(\int_0^\infty
+                      \frac{v^{\alpha-1}}{1+v}\,dv\right)^{-1}.
+\]
+The normalizing integral is finite at both zero and infinity. Set
+$\mathsf R_\alpha=(1+\mathsf V_\alpha)^{-1}\in(0,1)$, and write
+$\mathbb E_\alpha$ for expectation under this law. The sans-serif
+symbols denote random variables; $v$ and $r$ denote fixed scalar
+values. Integration by parts, with vanishing endpoint terms, gives
+\[
+ \mathbb E_\alpha(1-\mathsf R_\alpha)
+ =c_\alpha\int_0^\infty\frac{v^\alpha}{(1+v)^2}\,dv
+ =\alpha c_\alpha\int_0^\infty
+                          \frac{v^{\alpha-1}}{1+v}\,dv
+ =\alpha.
+\]
+For $\tau>0$, substituting $w=v\tau/(\tau+1)$ in the integral
+below gives
+\begin{equation}\label{eq:geometric-mean-integral}
+ \begin{aligned}
+ \tau^{1-\alpha}(\tau+1)^\alpha
+ &=c_\alpha\int_0^\infty
+   \frac{\tau(\tau+1)}{(\tau+1)+v\tau}\,v^{\alpha-1}\,dv\\
+ &=\mathbb E_\alpha
+       \frac{\tau(\tau+1)}{\tau+\mathsf R_\alpha}\\
+ &=\mathbb E_\alpha\left[
+       \tau+(1-\mathsf R_\alpha)
+       -\frac{\mathsf R_\alpha(1-\mathsf R_\alpha)}
+                    {\tau+\mathsf R_\alpha}\right].
+ \end{aligned}
+\end{equation}
+At $\tau=0$ the last two expressions also agree, and both are zero.
+Integrating in $\alpha$ and using
+\cref{eq:logarithmic-mean-integral} therefore yields
+\begin{equation}\label{eq:regularization-mixture}
+ f(\tau)=\int_0^1\mathbb E_\alpha
+       \frac{\mathsf R_\alpha(1-\mathsf R_\alpha)}
+                    {\tau+\mathsf R_\alpha}\,d\alpha,
+ \qquad 0\le f(\tau)\le f(0)=\frac12.
+\end{equation}
+The formula at zero follows directly from
+$\mathbb E_\alpha(1-\mathsf R_\alpha)=\alpha$ and $f(0)=1/2$.
+The bound follows from
+$\mathsf R_\alpha/(\tau+\mathsf R_\alpha)\le1$.
+
+We next prove the positive semidefiniteness needed in this mixture.
+We use the standard Gram-kernel criterion and the Schur product
+theorem \cite[Propositions 17.1 and 17.5]{GallierQuaintance}.
+In particular, a pointwise convergent sum
+$\sum_m\varphi_m(x)\overline{\varphi_m(y)}$ is positive
+semidefinite: its finite partial sums are Gram kernels, and the
+cone of positive semidefinite matrices is closed. More generally,
+finite-valued pointwise limits of positive semidefinite kernels are
+positive semidefinite; see also \cite[Problem 17.4]{GallierQuaintance}.
+
+The power series
+\[
+ S(x,y)=\frac1{1-x\overline y}
+       =\sum_{m=0}^\infty x^m\overline y^{\,m}
+ \qquad(x,y\in\mathbb D)
+\]
+satisfies this criterion. Its complex conjugate is also positive
+semidefinite, by the same criterion with $\varphi_m(x)=\overline x^{\,m}$.
+The Schur product theorem shows that
+$S(x,y)\overline{S(x,y)}=|1-x\overline y|^{-2}$ is positive
+semidefinite. On every finite set, multiplying this kernel by
+$(1-|x|^2)(1-|y|^2)$ is congruence by the positive diagonal matrix
+$\operatorname{diag}(1-|x_i|^2)$ and preserves positive
+semidefiniteness. Since
+\[
+ |1-x\overline y|^2
+ =|x-y|^2+(1-|x|^2)(1-|y|^2),
+\]
+the resulting kernel is
+\[
+ k(x,y)=\frac1{1+h(x,y)}
+       =\frac{(1-|x|^2)(1-|y|^2)}{|1-x\overline y|^2}.
+\]
+Thus $k$ is positive semidefinite and $0<k(x,y)\le1$.
+For each fixed scalar $0<r<1$, the geometric series gives
+\begin{equation}\label{eq:regularization-geometric-series}
+ \frac1{h(x,y)+r}
+ =\frac{k(x,y)}{1-(1-r)k(x,y)}
+ =\sum_{m=0}^\infty(1-r)^m k(x,y)^{m+1}.
+\end{equation}
+Every positive integer entrywise power of $k$ is positive
+semidefinite by repeated application of the Schur product theorem.
+The coefficients in this series are nonnegative, so its partial
+sums are positive semidefinite. The series converges everywhere,
+including when $x=y$, because $(1-r)k(x,y)\le1-r<1$.
+For each fixed finite set of points, the matrices of partial sums
+converge entrywise. Their limit is positive semidefinite: for every
+vector $b$, its quadratic form is the limit of the nonnegative
+quadratic forms of the partial sums. Thus
+$(x,y)\mapsto1/(h(x,y)+r)$ is positive semidefinite.
+
+For any finite points $x_i$ and real coefficients $b_i$, the mixture
+\cref{eq:regularization-mixture} now gives
+\[
+ \begin{aligned}
+ \sum_{i,j}b_i b_j f(h(x_i,x_j))
+ &=\int_0^1\mathbb E_\alpha\left[
+   \mathsf R_\alpha(1-\mathsf R_\alpha)
+   \sum_{i,j}\frac{b_i b_j}{h(x_i,x_j)+\mathsf R_\alpha}
+   \right]\,d\alpha\\
+ &\ge0.
+ \end{aligned}
+\]
+For each realization of $\mathsf R_\alpha\in(0,1)$, the inner
+quadratic form is nonnegative by the preceding argument.
+The finite sum may be interchanged with the integrals because
+\[
+ 0\le\frac{\mathsf R_\alpha(1-\mathsf R_\alpha)}
+                {h(x_i,x_j)+\mathsf R_\alpha}
+ \le1-\mathsf R_\alpha\le1.
+\]
+These integrands are measurable under the explicit densities above
+and integrable in both $v$ and $\alpha$. This proves that
+$(x,y)\mapsto f(h(x,y))$ is positive semidefinite, including on
+the diagonal.
+
+Define $C_\epsilon$ by
+\begin{equation}\label{eq:regularized-green}
+ \begin{aligned}
+ \frac1{C_\epsilon(x,y)}
+ &=4\pi\left[h(x,y)+\frac12
+                  -(1-\epsilon)f(h(x,y))\right]\\
+ &=4\pi\left[L(h(x,y))+\epsilon f(h(x,y))\right].
+ \end{aligned}
+\end{equation}
+On any finite set, its reciprocal matrix is $4\pi$ times the
+matrix of $h+\tfrac12$, minus $4\pi(1-\epsilon)$ times the matrix
+of $f\circ h$. For the former matrix $A$,
+\cref{eq:regularization-rank-one} shows that $WAW$ is a rank-one
+positive semidefinite matrix minus a positive semidefinite Gram
+matrix. Hence $n_+(WAW)\le1$ by \cref{lem:rank-one-difference}.
+Since $W$ is invertible, Sylvester's
+law of inertia gives $n_+(A)=n_+(WAW)\le1$.
+The matrix of $f\circ h$ is positive semidefinite by the mixture
+argument.
+Since subtracting a positive semidefinite matrix cannot increase
+$n_+$, the reciprocal matrix has at most one positive eigenvalue.
+
+For $\tau\ge0$,
+\[
+ L(\tau)+\epsilon f(\tau)
+ =\epsilon\left(\tau+\frac12\right)+(1-\epsilon)L(\tau)
+ \ge\frac\epsilon2.
+\]
+The reciprocal in \cref{eq:regularized-green} is therefore at least
+$2\pi\epsilon$. Continuity of $h,L,f$ shows that $C_\epsilon$
+is continuous and strictly positive, with
+$C_\epsilon\le1/(2\pi\epsilon)$.
+Finally $f\ge0$ implies $C_\epsilon\uparrow G$ as
+$\epsilon\downarrow0$ off the diagonal, and $0<C_\epsilon\le G$.
+On the diagonal,
+$C_\epsilon(x,x)=1/(2\pi\epsilon)\uparrow+\infty=G(x,x)$.
+\end{proof}
+
+\subsection{A finite resolvent update}
+
+\begin{lemma}\label[lemma]{lem:finite-resolvent-update}
+Let $M$ be a real symmetric $n\times n$ matrix with strictly
+positive entries, and suppose that its entrywise reciprocal
+$Q=[1/M_{ij}]_{i,j=1}^n$ satisfies $n_+(Q)\le1$.
+For any index $z\in\{1,\ldots,n\}$ and any scalar $c\ge0$, define
+\[
+ \widetilde M_{ij}=M_{ij}+cM_{iz}M_{zj}.
+\]
+Then the entrywise reciprocal
+$\widetilde Q=[1/\widetilde M_{ij}]_{i,j=1}^n$ also satisfies
+$n_+(\widetilde Q)\le1$.
+\end{lemma}
+\begin{proof}
+The case $c=0$ is immediate, since $\widetilde M=M$.
+The assertion is also immediate when $n=1$. Hence assume
+$c>0$ and $n\ge2$. Define the diagonal matrix
+\[
+ D=\operatorname{diag}(M_{1z},\ldots,M_{nz})
+\]
+and set $H=DQD$. All diagonal entries of $D$ are positive, so $D$
+is invertible and Sylvester's law of inertia gives
+$n_+(H)=n_+(Q)\le1$. By symmetry of $M$,
+\[
+ H_{ij}=\frac{M_{iz}M_{jz}}{M_{ij}}
+       =\frac{M_{iz}M_{zj}}{M_{ij}}.
+\]
+Write $\gamma=M_{zz}>0$. The $z$-row and $z$-column of $H$ are
+constant, because $H_{iz}=M_{iz}M_{zz}/M_{iz}=\gamma$.
+
+After simultaneously reordering the rows and columns to place
+index $z$ last, let
+\[
+ H_0=[H_{ij}]_{i,j\ne z}
+\]
+be the $(n-1)\times(n-1)$ principal submatrix obtained by deleting
+the $z$-row and $z$-column. With $\mathbf1_{n-1}$ denoting the
+all-ones vector of length $n-1$, the full matrix is
+\[
+ H=\begin{pmatrix}
+ H_0&\gamma\mathbf1_{n-1}\\
+ \gamma\mathbf1_{n-1}^T&\gamma
+ \end{pmatrix}.
+\]
+Changing from the standard basis to
+$e_1-e_n,\ldots,e_{n-1}-e_n,e_n$ gives an invertible congruence
+transforming $H$ into
+\[
+ \begin{pmatrix}
+ H_0-\gamma\mathbf1_{n-1}\mathbf1_{n-1}^T&0\\
+ 0&\gamma
+ \end{pmatrix}.
+\]
+The last block already contributes one positive eigenvalue.
+Since $n_+(H)\le1$, the first block must be negative semidefinite.
+Consequently the full $n\times n$ matrix
+\[
+ U=\gamma\mathbf1_n\mathbf1_n^T-H
+  =\begin{pmatrix}
+    \gamma\mathbf1_{n-1}\mathbf1_{n-1}^T-H_0&0\\
+    0&0
+   \end{pmatrix}
+\]
+is positive semidefinite. Here $\mathbf1_n$ is the all-ones vector
+of length $n$. Since $H_{ii}>0$,
+\[
+ 0\le U_{ii}=\gamma-H_{ii}<\gamma.
+\]
+The Cauchy--Schwarz inequality for a positive semidefinite matrix
+then gives
+\[
+ |U_{ij}|^2\le U_{ii}U_{jj}<\gamma^2,
+ \qquad |U_{ij}|<\gamma.
+\]
+
+For the reciprocal matrix of the updated matrix $\widetilde M$,
+use the same diagonal matrix $D$ and define
+$\widetilde H=D\widetilde QD$. Its entries are
+\[
+ \widetilde H_{ij}
+ =\frac{M_{iz}M_{zj}}{M_{ij}+cM_{iz}M_{zj}}
+ =\frac{H_{ij}}{1+cH_{ij}}.
+\]
+Define the constant rank-one positive semidefinite matrix
+\[
+ C_c=\frac{\gamma}{1+c\gamma}\,
+                    \mathbf1_n\mathbf1_n^T.
+\]
+Using $H_{ij}=\gamma-U_{ij}$, the entries of
+$B_c=C_c-\widetilde H$ satisfy
+\begin{equation}\label{eq:finite-update-series}
+ \begin{aligned}
+ (B_c)_{ij}
+ &=\frac{\gamma}{1+c\gamma}
+                -\frac{H_{ij}}{1+cH_{ij}}\\
+ &=\frac{U_{ij}}
+        {(1+c\gamma)(1+c\gamma-cU_{ij})}\\
+ &=\sum_{m=0}^\infty
+       \frac{c^m U_{ij}^{\,m+1}}{(1+c\gamma)^{m+2}}.
+ \end{aligned}
+\end{equation}
+The series converges absolutely in every entry, because
+$|cU_{ij}|<c\gamma<1+c\gamma$.
+Each positive integer entrywise power of $U$ is positive semidefinite
+by the Schur product theorem
+\cite[Proposition 17.5]{GallierQuaintance}; this conclusion does not
+require the entries of $U$ to be nonnegative. All coefficients
+in \cref{eq:finite-update-series} are nonnegative, so the matrices
+of partial sums are positive semidefinite. Their entrywise limit
+$B_c$ is positive semidefinite, since each quadratic form of $B_c$
+is the limit of the corresponding nonnegative quadratic forms.
+
+Thus $\widetilde H=C_c-B_c$ is a rank-one positive semidefinite
+matrix minus a positive semidefinite matrix.
+By \cref{lem:rank-one-difference}, $n_+(\widetilde H)\le1$.
+Since $D$ is invertible, Sylvester's law of inertia gives
+$n_+(\widetilde Q)=n_+(\widetilde H)\le1$, as required.
+\end{proof}
+
+\subsection{The interior resolvent kernel}\label{sec:interior-resolvent}
+
+Let $0\le\rho\le q$ be supported on a compact subset of $\mathbb D$.
+Write $\langle f,g\rangle_\rho=\int fg\,d\rho$ and
+$\|f\|_\rho=\langle f,f\rangle_\rho^{1/2}$ on the real space
+$L^2(\rho)$. The Green operator
+\[
+ T_\rho f(x)=\int_{\mathbb D}G(x,y)f(y)\,d\rho(y)
+\]
+has $\|T_\rho\|\le d<1$, by the Green-operator estimate of \cref{sec:boundary-kernels}.
+For each interior point $x$, the section $G(x,\cdot)$ belongs to
+$L^2(\rho)$: the density of $\rho$ is bounded, and the logarithmic
+singularity is locally square integrable. Define
+\begin{equation}\label{eq:interior-resolvent-kernel}
+ \begin{aligned}
+ M_\rho(x,y)&=G(x,y)+
+ \left\langle G(x,\cdot),(I-T_\rho)^{-1}G(y,\cdot)
+ \right\rangle_\rho\quad(x\ne y),\\
+ M_\rho(x,x)&=+\infty.
+ \end{aligned}
+\end{equation}
+
+\begin{proposition}\label[proposition]{prop:interior-reciprocal}
+The kernel $M_\rho$ satisfies the reciprocal matrix condition in
+\cref{def:reciprocal-matrix-condition}. In particular, every finite
+reciprocal matrix has zero diagonal and at most one positive eigenvalue.
+\end{proposition}
+\begin{proof}
+First fix $0<\epsilon\le1$ and define the operator
+\[
+ T_{\rho,\epsilon}f(x)
+ =\int_{\mathbb D}C_\epsilon(x,y)f(y)\,d\rho(y)
+\]
+on $L^2(\rho)$. The bounds $0<C_\epsilon\le G$ from
+\cref{lem:green-regularization} give the pointwise inequality
+\[
+ |T_{\rho,\epsilon}f(x)|\le T_\rho|f|(x)
+ \qquad\text{for $\rho$-almost every }x.
+\]
+Taking $L^2(\rho)$ norms gives
+\[
+ \|T_{\rho,\epsilon}f\|_\rho
+ \le\|T_\rho|f|\|_\rho\le d\|f\|_\rho,
+ \qquad \|T_{\rho,\epsilon}\|\le d<1.
+\]
+Hence $I-T_{\rho,\epsilon}$ is invertible. For every $x,y\in\mathbb D$,
+including $x=y$, define
+\begin{equation}\label{eq:regularized-interior-resolvent}
+ \begin{aligned}
+ M_{\rho,\epsilon}(x,y)&=C_\epsilon(x,y)\\
+ &\quad+\left\langle C_\epsilon(x,\cdot),
+ (I-T_{\rho,\epsilon})^{-1}C_\epsilon(y,\cdot)
+ \right\rangle_\rho.
+ \end{aligned}
+\end{equation}
+The sections in this formula belong to $L^2(\rho)$ because
+$C_\epsilon$ is bounded and $\rho$ is finite. Thus both the kernel
+sections and the operator in \cref{eq:interior-resolvent-kernel}
+have been replaced by their $C_\epsilon$ counterparts.
+
+We first prove the condition in \cref{def:reciprocal-matrix-condition} for
+$M_{\rho,\epsilon}$ by quadrature. If $\rho=0$, then
+$M_{\rho,\epsilon}=C_\epsilon$, and this follows directly from
+\cref{lem:green-regularization}. For the quadrature argument assume
+$\rho\ne0$, and fix a nonempty compact set $E\subset\mathbb D$
+such that $\rho(\mathbb D\setminus E)=0$.
+For each integer $m\ge1$, choose a finite Borel partition
+\[
+ E=\bigsqcup_{j=1}^{J_m}E_{m,j},
+ \qquad \max_j\operatorname{diam}(E_{m,j})\le\frac1m,
+\]
+with nonempty cells. Such partitions are obtained by intersecting
+$E$ with a grid of half-open squares of side $1/(\sqrt2\,m)$
+and discarding empty intersections. For each
+$j\in\{1,\ldots,J_m\}$ choose $z_{m,j}\in E_{m,j}$, and put
+\[
+ w_{m,j}=\rho(E_{m,j}),\qquad
+ I_m=\{j:w_{m,j}>0\},\qquad
+ \zeta_m(x)=z_{m,j}\quad(x\in E_{m,j}).
+\]
+The representatives are distinct because the cells are disjoint.
+Only indices in $I_m$ contribute to quadrature sums, but choosing
+representatives also in the zero-mass cells defines $\zeta_m$ on
+all of $E$. In particular,
+$\sup_{x\in E}|\zeta_m(x)-x|\le1/m$.
+
+Define the quadrature kernel and its operator by
+\[
+ \begin{aligned}
+ C_{\epsilon,m}(x,y)&=C_\epsilon(\zeta_m(x),\zeta_m(y))
+                         &&(x,y\in E),\\
+ T_{\rho,\epsilon,m}f(x)&=\int_E C_{\epsilon,m}(x,y)f(y)\,d\rho(y)
+                         &&(x\in E).
+ \end{aligned}
+\]
+Uniform continuity of $C_\epsilon$ on $E\times E$ gives
+\begin{equation}\label{eq:quadrature-kernel-convergence}
+ \delta_m=\sup_{x,y\in E}
+ |C_{\epsilon,m}(x,y)-C_\epsilon(x,y)|\longrightarrow0.
+\end{equation}
+For $f\in L^2(\rho)$, Cauchy--Schwarz gives
+\[
+ |(T_{\rho,\epsilon,m}-T_{\rho,\epsilon})f(x)|
+ \le\delta_m\int_E|f|\,d\rho
+ \le\delta_m\sqrt{\rho(E)}\,\|f\|_\rho.
+\]
+Taking the $L^2(\rho)$ norm in $x$ yields the exact estimate
+\begin{equation}\label{eq:quadrature-operator-convergence}
+ \|T_{\rho,\epsilon,m}-T_{\rho,\epsilon}\|
+ \le\rho(E)\delta_m\longrightarrow0.
+\end{equation}
+All operator norms in this argument are on $L^2(\rho)$ unless
+another space is specified. Choose $m_0$ so that
+$\rho(E)\delta_m\le(1-d)/2$ for $m\ge m_0$. Then
+\begin{equation}\label{eq:quadrature-inverse-bound}
+ \|T_{\rho,\epsilon,m}\|\le\frac{1+d}{2}<1,
+ \qquad
+ \|(I-T_{\rho,\epsilon,m})^{-1}\|\le\frac2{1-d}.
+\end{equation}
+The resolvent identity
+\[
+ \begin{aligned}
+ &(I-T_{\rho,\epsilon,m})^{-1}-(I-T_{\rho,\epsilon})^{-1}\\
+ &\quad=(I-T_{\rho,\epsilon,m})^{-1}
+ (T_{\rho,\epsilon,m}-T_{\rho,\epsilon})
+ (I-T_{\rho,\epsilon})^{-1}
+ \end{aligned}
+\]
+therefore gives
+\begin{equation}\label{eq:quadrature-resolvent-convergence}
+ \left\|(I-T_{\rho,\epsilon,m})^{-1}
+             -(I-T_{\rho,\epsilon})^{-1}\right\|
+ \le\frac{2\rho(E)\delta_m}{(1-d)^2}\longrightarrow0.
+\end{equation}
+
+For each fixed evaluation point $x\in\mathbb D$, define
+\[
+ u_{m,x}(z)=C_\epsilon(x,\zeta_m(z)),\qquad
+ u_x(z)=C_\epsilon(x,z)\quad(z\in E).
+\]
+Uniform continuity on $\{x\}\times E$ gives
+\begin{equation}\label{eq:quadrature-source-convergence}
+ \|u_{m,x}-u_x\|_\rho
+ \le\sqrt{\rho(E)}\sup_{z\in E}
+ |C_\epsilon(x,\zeta_m(z))-C_\epsilon(x,z)|\longrightarrow0.
+\end{equation}
+For $m\ge m_0$, define
+\begin{equation}\label{eq:quadrature-resolvent-kernel}
+ \begin{aligned}
+ M_{\rho,\epsilon,m}(x,y)&=C_\epsilon(x,y)\\
+ &\quad+\left\langle u_{m,x},
+ (I-T_{\rho,\epsilon,m})^{-1}u_{m,y}\right\rangle_\rho.
+ \end{aligned}
+\end{equation}
+The bounds and convergences in
+\cref{eq:quadrature-inverse-bound,eq:quadrature-resolvent-convergence,eq:quadrature-source-convergence}
+imply, for every fixed $x,y\in\mathbb D$,
+\begin{equation}\label{eq:quadrature-evaluation-convergence}
+ M_{\rho,\epsilon,m}(x,y)\longrightarrow M_{\rho,\epsilon}(x,y).
+\end{equation}
+Indeed, split the difference of the pairings by changing first
+$u_{m,x}$, then the inverse, then $u_{m,y}$. Cauchy--Schwarz bounds
+the resulting terms by the corresponding source and operator errors
+times bounded norms. Thus \eqref{eq:quadrature-evaluation-convergence}
+is pointwise convergence in the evaluation points.
+
+We now express \cref{eq:quadrature-resolvent-kernel} as a finite
+matrix formula. For this fixed $m$, let $N_m=|I_m|$, order the
+positive-mass cells by increasing index, and define
+\[
+ e_{m,j}=\frac{\mathbf1_{E_{m,j}}}{\sqrt{w_{m,j}}}\quad(j\in I_m),
+ \qquad
+ \mathcal S_m=\operatorname{span}\{\mathbf1_{E_{m,j}}:j\in I_m\}
+ \subset L^2(\rho).
+\]
+The subspace $\mathcal S_m$ consists of functions constant
+$\rho$-almost everywhere on each partition cell. The vectors
+$e_{m,j}$ form an orthonormal basis of this subspace, because
+the cells are disjoint and $\|\mathbf1_{E_{m,j}}\|_\rho^2=w_{m,j}$.
+Define the isometry
+\[
+ J_m:\mathbb R^{N_m}\to L^2(\rho),\qquad
+ J_m b=\sum_{j\in I_m}b_j e_{m,j}.
+\]
+Its range is $\mathcal S_m$, and
+$(J_m^*f)_j=w_{m,j}^{-1/2}\int_{E_{m,j}}f\,d\rho$.
+Define the symmetric matrix $A_m$ and coordinate vectors
+$\xi_{m,x}$ by
+\[
+ (A_m)_{ij}=\sqrt{w_{m,i}}\,
+       C_\epsilon(z_{m,i},z_{m,j})\sqrt{w_{m,j}},
+ \qquad
+ (\xi_{m,x})_j=\sqrt{w_{m,j}}\,C_\epsilon(x,z_{m,j}).
+\]
+Direct substitution gives
+\begin{equation}\label{eq:quadrature-matrix-representation}
+ T_{\rho,\epsilon,m}=J_m A_m J_m^*,\qquad
+ u_{m,x}=J_m\xi_{m,x}.
+\end{equation}
+Thus the operator is represented by $A_m$ on $\mathcal S_m$
+and vanishes on $\mathcal S_m^\perp$. In particular,
+\[
+ \|A_m\|_{\mathbb R^{N_m}\to\mathbb R^{N_m}}
+ =\|T_{\rho,\epsilon,m}\|\le\frac{1+d}{2}<1.
+\]
+Since $(I-T_{\rho,\epsilon,m})J_m=J_m(I-A_m)$,
+\cref{eq:quadrature-matrix-representation} yields the exact formula
+\begin{equation}\label{eq:quadrature-finite-resolvent}
+ M_{\rho,\epsilon,m}(x,y)
+ =C_\epsilon(x,y)+\xi_{m,x}^T(I-A_m)^{-1}\xi_{m,y}.
+\end{equation}
+
+The Neumann series $(I-A_m)^{-1}=\sum_{k=0}^\infty A_m^k$
+converges in matrix operator norm. Expanding the matrix products gives
+\begin{equation}\label{eq:quadrature-product-expansion}
+ \begin{aligned}
+ &\xi_{m,x}^T(I-A_m)^{-1}\xi_{m,y}\\
+ &=\sum_{k=0}^\infty\sum_{j_0,\ldots,j_k\in I_m}
+   \left(\prod_{\ell=0}^k w_{m,j_\ell}\right)
+   C_\epsilon(x,z_{m,j_0})\\
+ &\qquad\qquad{}\times\left(\prod_{\ell=0}^{k-1}
+     C_\epsilon(z_{m,j_\ell},z_{m,j_{\ell+1}})\right)
+   C_\epsilon(z_{m,j_k},y).
+ \end{aligned}
+\end{equation}
+For $k=0$ the middle product is one. The intermediate indices may
+repeat, and each occurrence contributes its quadrature weight.
+All summands are nonnegative. Finiteness follows from
+\eqref{eq:quadrature-finite-resolvent}, or directly from
+\[
+ |\xi_{m,x}^T A_m^k\xi_{m,y}|
+ \le\|\xi_{m,x}\|\,\|\xi_{m,y}\|\,\|A_m\|^k.
+\]
+
+For a subset $J\subseteq I_m$, let $\mathcal R_{m,J}(x,y)$ denote
+the series on the right-hand side of
+\eqref{eq:quadrature-product-expansion} with every intermediate
+index $j_0,\ldots,j_k$ restricted to $J$; put
+$\mathcal R_{m,\varnothing}=0$. Nonnegativity gives
+\begin{equation}\label{eq:restricted-series-bound}
+ 0\le\mathcal R_{m,J}(x,y)
+ \le\mathcal R_{m,I_m}(x,y)
+ =\xi_{m,x}^T(I-A_m)^{-1}\xi_{m,y}<\infty.
+\end{equation}
+Define
+\[
+ M^{(J)}(x,y)=C_\epsilon(x,y)+\mathcal R_{m,J}(x,y).
+\]
+In particular, $M^{(\varnothing)}=C_\epsilon$ and
+$M^{(I_m)}=M_{\rho,\epsilon,m}$.
+
+Choose $j_*\in I_m\setminus J$, and write
+$z=z_{m,j_*}$ and $w=w_{m,j_*}>0$.
+We calculate $M^{(J\cup\{j_*\})}$ by grouping the new terms
+according to the number $k\ge1$ of occurrences of $j_*$ among
+their intermediate indices. Splitting the sequence at these
+occurrences leaves $k+1$ segments whose intermediate indices
+belong to $J$. Summing over each segment gives a factor $M^{(J)}$;
+its direct $C_\epsilon$ term accounts for an empty intermediate
+sequence. Each of the $k$ occurrences contributes a factor $w$.
+Therefore, by regrouping nonnegative series,
+\begin{equation}\label{eq:additional-node-expansion}
+ \begin{aligned}
+ M^{(J\cup\{j_*\})}(x,y)
+ &=M^{(J)}(x,y)\\
+ &\quad+\sum_{k=1}^\infty w^k M^{(J)}(x,z)
+       \bigl(M^{(J)}(z,z)\bigr)^{k-1}M^{(J)}(z,y).
+ \end{aligned}
+\end{equation}
+Every $M^{(J)}$ value is finite and strictly positive by
+\eqref{eq:restricted-series-bound}. The series in
+\eqref{eq:additional-node-expansion} is finite by the same bound,
+so its geometric ratio satisfies $wM^{(J)}(z,z)<1$.
+Summing it gives
+\begin{equation}\label{eq:additional-node-update}
+ \begin{aligned}
+ M^{(J\cup\{j_*\})}(x,y)
+ &=M^{(J)}(x,y)+c_JM^{(J)}(x,z)M^{(J)}(z,y),\\
+ c_J&=\frac{w}{1-wM^{(J)}(z,z)}>0.
+ \end{aligned}
+\end{equation}
+
+Fix a finite set of distinct evaluation points, and form its union
+with the positive-mass quadrature nodes, listed without repetitions.
+Sample every $M^{(J)}$ on this same finite set. Order the indices
+in $I_m$ as $j_1,\ldots,j_{N_m}$ and put
+$J_0=\varnothing$, $J_\ell=\{j_1,\ldots,j_\ell\}$.
+For $J_0$, the sampled matrix is that of $C_\epsilon$, whose
+reciprocal has at most one positive eigenvalue by
+\cref{lem:green-regularization}. At each step,
+\eqref{eq:additional-node-update} is exactly the update in
+\cref{lem:finite-resolvent-update}, with $z$ an index in the
+sampled matrix. Applying that lemma successively for
+$\ell=1,\ldots,N_m$ proves the same bound for the reciprocal
+matrix of $M^{(I_m)}=M_{\rho,\epsilon,m}$.
+Taking the principal submatrix on the evaluation points proves
+that $M_{\rho,\epsilon,m}$ satisfies the condition in
+\cref{def:reciprocal-matrix-condition}.
+
+By \eqref{eq:quadrature-evaluation-convergence}, for any fixed
+finite set $x_1,\ldots,x_n$,
+$M_{\rho,\epsilon,m}(x_i,x_j)\to M_{\rho,\epsilon}(x_i,x_j)$.
+The approximating kernels are at least $C_\epsilon$, by
+\eqref{eq:quadrature-product-expansion}, so the limiting entries
+are strictly positive. Hence their reciprocal matrices converge
+entrywise as well. The bound $n_+\le1$ passes to this limit of
+matrices of fixed size. Thus $M_{\rho,\epsilon}$ satisfies
+the condition in \cref{def:reciprocal-matrix-condition} for each $\epsilon$.
+
+Finally let $\epsilon\downarrow0$. For $k\ge0$, define
+\begin{equation}\label{eq:regularized-iterated-integral}
+ \begin{aligned}
+ \mathcal I_{\rho,\epsilon,k}(x,y)
+ &=\int_{E^{k+1}}C_\epsilon(x,z_0)\\
+ &\quad{}\times\left(\prod_{\ell=0}^{k-1}C_\epsilon(z_\ell,z_{\ell+1})\right)
+   C_\epsilon(z_k,y)\,
+   d\rho(z_0)\cdots d\rho(z_k).
+ \end{aligned}
+\end{equation}
+The middle product is one when $k=0$. If $\rho=0$, take any
+nonempty compact $E\subset\mathbb D$; all these integrals are zero.
+The operator Neumann series and the nonnegative integral kernels give
+\begin{equation}\label{eq:regularized-correction-series}
+ M_{\rho,\epsilon}(x,y)-C_\epsilon(x,y)
+ =\sum_{k=0}^\infty\mathcal I_{\rho,\epsilon,k}(x,y).
+\end{equation}
+By \cref{lem:green-regularization}, $C_\epsilon\uparrow G$.
+Thus each integrand in \eqref{eq:regularized-iterated-integral}
+increases pointwise to the product with $G$ in place of every
+$C_\epsilon$ factor. Monotone convergence for the integrals and
+then their series gives
+\begin{equation}\label{eq:green-correction-limit}
+ \begin{aligned}
+ \lim_{\epsilon\downarrow0}
+ \sum_{k=0}^\infty\mathcal I_{\rho,\epsilon,k}(x,y)
+ &=\sum_{k=0}^\infty\mathcal I_{\rho,G,k}(x,y)\\
+ &=\left\langle G(x,\cdot),(I-T_\rho)^{-1}G(y,\cdot)
+   \right\rangle_\rho,
+ \end{aligned}
+\end{equation}
+where $\mathcal I_{\rho,G,k}$ is the same integral with $G$.
+The last equality follows from the Neumann series for
+$(I-T_\rho)^{-1}$; its $k$th pairing is precisely
+$\mathcal I_{\rho,G,k}$.
+
+The correction in \eqref{eq:green-correction-limit} is finite
+for every $x,y\in\mathbb D$, including $x=y$, because
+\begin{equation}\label{eq:green-correction-bound}
+ \left|\left\langle G(x,\cdot),(I-T_\rho)^{-1}G(y,\cdot)
+ \right\rangle_\rho\right|
+ \le\frac{\|G(x,\cdot)\|_\rho\,\|G(y,\cdot)\|_\rho}{1-d}.
+\end{equation}
+For $x\ne y$, the direct term also has a finite limit, so
+\[
+ M_{\rho,\epsilon}(x,y)\longrightarrow M_\rho(x,y)<\infty.
+\]
+On the diagonal, the nonnegative correction gives
+\[
+ M_{\rho,\epsilon}(x,x)\ge C_\epsilon(x,x)
+ =\frac1{2\pi\epsilon}\longrightarrow+\infty.
+\]
+Thus, for any fixed finite set of distinct points $x_1,\ldots,x_n$,
+the reciprocal matrices converge entrywise to the matrix with
+off-diagonal entries $1/M_\rho(x_i,x_j)$ and diagonal entries zero.
+Each approximating matrix has at most one positive eigenvalue,
+so the same is true of this limit. This is exactly
+the condition in \cref{def:reciprocal-matrix-condition} for $M_\rho$.
+\end{proof}
+
+\subsection{The boundary limit}
+
+We first record explicit integral formulas for the boundary kernels.
+For any $0\le\rho\le q$ and $k\ge1$, define
+\begin{equation}\label{eq:solution-iterated-integral}
+ \begin{aligned}
+ \mathcal K_{\rho,k}(p,s)
+ &=\int_{\mathbb D^k}G(p,x_1)\\
+ &\quad{}\times\left(\prod_{\ell=1}^{k-1}G(x_\ell,x_{\ell+1})\right)
+ P_s(x_k)\,d\rho(x_1)\cdots d\rho(x_k).
+ \end{aligned}
+\end{equation}
+For $k\ge0$, define
+\begin{equation}\label{eq:interaction-iterated-integral}
+ \begin{aligned}
+ \mathcal R_{\rho,k}(s,t)
+ &=\int_{\mathbb D^{k+1}}P_s(x_0)\\
+ &\quad{}\times\left(\prod_{\ell=0}^{k-1}G(x_\ell,x_{\ell+1})\right)
+ P_t(x_k)\,d\rho(x_0)\cdots d\rho(x_k).
+ \end{aligned}
+\end{equation}
+Empty products in these formulas equal one. The nonnegative
+integrals and series define
+\begin{equation}\label{eq:potential-boundary-series}
+ \begin{aligned}
+ K_\rho(p,s)&=P_s(p)+\sum_{k=1}^\infty\mathcal K_{\rho,k}(p,s),\\
+ R_\rho(s,t)&=\sum_{k=0}^\infty\mathcal R_{\rho,k}(s,t),\\
+ N_\rho(s,t)&=N_0(s,t)+R_\rho(s,t),\qquad
+ N_0(s,t)=\frac1{\pi|s-t|^2}\quad(s\ne t).
+ \end{aligned}
+\end{equation}
+These are the definitions from \cref{sec:boundary-kernels} with $q$ replaced by $\rho$.
+In particular $K_q=K$, $R_q=R$, and $N_q=N$. The integrals are
+understood as nonnegative integrals before finiteness is asserted;
+they do not require a Poisson section to belong to $L^2(q)$.
+
+\begin{lemma}\label[lemma]{lem:boundary-reciprocal}
+Let $s_1,\ldots,s_n\in S^1$ be distinct, and let $p\in\mathbb D$.
+Define the real symmetric matrix
+\begin{equation}\label{eq:boundary-bordered-matrix}
+ \begin{gathered}
+ \mathcal B=\begin{pmatrix}B&\ell\\\ell^T&0\end{pmatrix},\\
+ B_{ij}=\begin{cases}
+ 1/N(s_i,s_j),&i\ne j,\\
+ 0,&i=j,
+ \end{cases}
+ \qquad \ell_i=\frac1{K(p,s_i)}.
+ \end{gathered}
+\end{equation}
+Then $n_+(\mathcal B)\le1$.
+\end{lemma}
+\begin{proof}
+First fix a compactly supported measure $0\le\rho\le q$.
+Choose a nonempty compact set $E\subset\mathbb D$ with
+$\rho(\mathbb D\setminus E)=0$. For $s\in S^1$ and $x\in\mathbb D$,
+the Green formula gives, when $rs\ne x$,
+\[
+ G(rs,x)=\frac1{4\pi}\log\left(
+ 1+\frac{(1-r^2)(1-|x|^2)}{|rs-x|^2}\right).
+\]
+On any fixed compact interior set, $|rs-x|$ is bounded away from
+zero for $r$ sufficiently close to one. Thus
+$\omega_{r,s}(x)=(1-r^2)(1-|x|^2)/|rs-x|^2$ tends uniformly to
+zero, and
+\[
+ \frac{G(rs,x)}{1-r}
+ =\frac{(1+r)(1-|x|^2)}{4\pi|rs-x|^2}\cdot
+   \frac{\log(1+\omega_{r,s}(x))}{\omega_{r,s}(x)}.
+\]
+Since $\log(1+u)/u\to1$ as $u\to0$, this proves
+\begin{equation}\label{eq:green-poisson-limit}
+ \frac{G(rs,x)}{1-r}\longrightarrow
+ P_s(x)=\frac{1-|x|^2}{2\pi|s-x|^2},
+\end{equation}
+uniformly on every compact subset of $\mathbb D$.
+For distinct $s,t\in S^1$, the same Green formula gives
+\[
+ G(rs,rt)=\frac1{4\pi}\log\left(
+ 1+\frac{(1-r^2)^2}{r^2|s-t|^2}\right).
+\]
+The fraction inside the logarithm tends to zero, and division by
+$(1-r)^2$, using $(1-r^2)^2/(1-r)^2=(1+r)^2$, yields
+\begin{equation}\label{eq:green-boundary-limit}
+ \frac{G(rs,rt)}{(1-r)^2}\longrightarrow
+ \frac1{\pi|s-t|^2}=N_0(s,t).
+\end{equation}
+
+Each Poisson section $P_s$ is bounded on $E$, so it belongs to
+$L^2(\rho)$. The uniform convergence in
+\eqref{eq:green-poisson-limit} gives
+\begin{equation}\label{eq:poisson-section-convergence}
+ \left\|\frac{G(rs,\cdot)}{1-r}-P_s\right\|_\rho
+ \le\sqrt{\rho(E)}\sup_{x\in E}
+ \left|\frac{G(rs,x)}{1-r}-P_s(x)\right|\longrightarrow0.
+\end{equation}
+Here $(I-T_\rho)^{-1}$ is a fixed bounded operator on $L^2(\rho)$,
+with norm at most $1/(1-d)$. Expanding its Neumann series and
+using \cref{eq:solution-iterated-integral,eq:interaction-iterated-integral,eq:potential-boundary-series}
+gives the identities
+\begin{equation}\label{eq:compact-boundary-pairings}
+ \begin{aligned}
+ R_\rho(s,t)&=\langle P_s,(I-T_\rho)^{-1}P_t\rangle_\rho,\\
+ K_\rho(p,s)&=P_s(p)+
+ \langle G(p,\cdot),(I-T_\rho)^{-1}P_s\rangle_\rho.
+ \end{aligned}
+\end{equation}
+All sections in these pairings belong to $L^2(\rho)$, including
+$G(p,\cdot)$ by the square integrability noted in \cref{sec:interior-resolvent}.
+
+For $r>|p|$, the points $rs_1,\ldots,rs_n,p$ are distinct.
+Writing out \eqref{eq:interior-resolvent-kernel} at these points gives
+\begin{equation}\label{eq:scaled-resolvent-evaluations}
+ \begin{aligned}
+ \frac{M_\rho(rs_i,rs_j)}{(1-r)^2}
+ &=\frac{G(rs_i,rs_j)}{(1-r)^2}\\
+ &\quad+\left\langle\frac{G(rs_i,\cdot)}{1-r},
+ (I-T_\rho)^{-1}\frac{G(rs_j,\cdot)}{1-r}\right\rangle_\rho
+ \quad(i\ne j),\\
+ \frac{M_\rho(p,rs_i)}{1-r}
+ &=\frac{G(p,rs_i)}{1-r}\\
+ &\quad+\left\langle G(p,\cdot),
+ (I-T_\rho)^{-1}\frac{G(rs_i,\cdot)}{1-r}\right\rangle_\rho.
+ \end{aligned}
+\end{equation}
+By \eqref{eq:poisson-section-convergence} and boundedness of the
+resolvent, the first pairing tends to $R_\rho(s_i,s_j)$ and the
+second tends to $K_\rho(p,s_i)-P_{s_i}(p)$, by
+\eqref{eq:compact-boundary-pairings}. The direct terms tend to
+$N_0(s_i,s_j)$ and $P_{s_i}(p)$ by
+\cref{eq:green-poisson-limit,eq:green-boundary-limit}, using symmetry
+of $G$ for the second term. Consequently
+\begin{equation}\label{eq:boundary-resolvent-limits}
+ \begin{aligned}
+ \frac{M_\rho(rs_i,rs_j)}{(1-r)^2}&\longrightarrow N_\rho(s_i,s_j)
+ \quad(i\ne j),\\
+ \frac{M_\rho(p,rs_i)}{1-r}&\longrightarrow K_\rho(p,s_i).
+ \end{aligned}
+\end{equation}
+
+Let $Q_{\rho,r}$ be the reciprocal matrix of $M_\rho$ sampled at
+$rs_1,\ldots,rs_n,p$, with zero diagonal as in
+\cref{def:reciprocal-matrix-condition}.
+By \cref{prop:interior-reciprocal}, $n_+(Q_{\rho,r})\le1$.
+Define
+\[
+ D_r=\operatorname{diag}(
+ \underbrace{1-r,\ldots,1-r}_{n\text{ entries}},1).
+\]
+Since $D_r$ is invertible, Sylvester's law of inertia gives
+$n_+(D_rQ_{\rho,r}D_r)\le1$. Its entries satisfy
+\[
+ \begin{aligned}
+ (D_rQ_{\rho,r}D_r)_{ij}
+ &=\frac{(1-r)^2}{M_\rho(rs_i,rs_j)}\quad(i\ne j,\ i,j\le n),\\
+ (D_rQ_{\rho,r}D_r)_{i,n+1}
+ &=\frac{1-r}{M_\rho(rs_i,p)}\quad(i\le n).
+ \end{aligned}
+\]
+Every diagonal entry remains zero. The limits in
+\eqref{eq:boundary-resolvent-limits} are strictly positive, since
+$N_\rho\ge N_0>0$ off the diagonal and $K_\rho(p,s)\ge P_s(p)>0$.
+Thus those limits and symmetry imply the entrywise matrix convergence
+\begin{equation}\label{eq:compact-bordered-limit}
+ \begin{gathered}
+ D_rQ_{\rho,r}D_r\longrightarrow
+ \mathcal B_\rho=\begin{pmatrix}B_\rho&\ell_\rho\\\ell_\rho^T&0\end{pmatrix},
+ \\
+ (B_\rho)_{ij}=\begin{cases}
+ 1/N_\rho(s_i,s_j),&i\ne j,\\0,&i=j,
+ \end{cases}
+ \quad (\ell_\rho)_i=\frac1{K_\rho(p,s_i)}.
+ \end{gathered}
+\end{equation}
+Since the matrices have fixed size, the bound $n_+\le1$ passes to
+the limit. Hence $n_+(\mathcal B_\rho)\le1$ for every compactly
+supported $0\le\rho\le q$.
+
+Now choose $0<r_1<r_2<\cdots\uparrow1$, set
+$F_m=\{|x|\le r_m\}$, and define $d\rho_m=\mathbf1_{F_m}\,dq$.
+To apply monotone convergence, write the integrals in
+\cref{eq:solution-iterated-integral,eq:interaction-iterated-integral}
+against the fixed product measures formed from $q$. Their
+integrands are respectively the displayed products of $G$ and
+$P_s$, multiplied by
+\[
+ \prod_{\ell=1}^k\mathbf1_{F_m}(x_\ell)
+ \qquad\text{and}\qquad
+ \prod_{\ell=0}^k\mathbf1_{F_m}(x_\ell).
+\]
+All factors are nonnegative. Since $F_m\uparrow\mathbb D$, these
+indicator products increase pointwise to one. Monotone convergence
+therefore gives, for each fixed $k$,
+\[
+ \mathcal K_{\rho_m,k}(p,s)\uparrow\mathcal K_{q,k}(p,s),
+ \qquad
+ \mathcal R_{\rho_m,k}(s,t)\uparrow\mathcal R_{q,k}(s,t).
+\]
+Applying monotone convergence to the nonnegative series in
+\eqref{eq:potential-boundary-series} yields
+\begin{equation}\label{eq:cutoff-boundary-kernel-limits}
+ \begin{aligned}
+ K_{\rho_m}(p,s)&\uparrow
+ P_s(p)+\sum_{k=1}^\infty\mathcal K_{q,k}(p,s)=K(p,s),\\
+ R_{\rho_m}(s,t)&\uparrow
+ \sum_{k=0}^\infty\mathcal R_{q,k}(s,t)=R(s,t),\\
+ N_{\rho_m}(s,t)&\uparrow N_0(s,t)+R(s,t)=N(s,t)\quad(s\ne t).
+ \end{aligned}
+\end{equation}
+These limits are exactly the kernels constructed for $q$ in
+\Cref{sec:boundary-kernels}. \Cref{lem:kernel-estimates} states that
+$K(p,s)$ is finite for $p\in\mathbb D$ and $s\in S^1$, and that
+$R(s,t)$ is finite for distinct $s,t\in S^1$. Thus the limiting
+$K$ and $N$ values used here are finite and strictly positive.
+Taking their reciprocals in \eqref{eq:cutoff-boundary-kernel-limits}
+gives $\mathcal B_{\rho_m}\to\mathcal B$ entrywise, with the
+diagonal identically zero. Since $n_+(\mathcal B_{\rho_m})\le1$,
+the same bound holds for $\mathcal B$, proving the lemma.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:squared-distance}]
+For distinct $s_1,\ldots,s_n\in S^1$, use the matrix
+$\mathcal B$ in \eqref{eq:boundary-bordered-matrix}.
+By \cref{lem:boundary-reciprocal}, $n_+(\mathcal B)\le1$.
+Each $K(p,s_i)$ is finite and strictly positive, so
+$\ell_i=1/K(p,s_i)>0$ and $\ell\ne0$.
+
+We first show that $v^TBv\le0$ whenever $\ell^Tv=0$.
+Suppose instead that $\ell^Tv=0$ and $v^TBv>0$.
+Set $y_0=\ell/(\ell^T\ell)$, so $\ell^Ty_0=1$, and define
+\[
+ \widehat y=y_0-\frac{v^TBy_0}{v^TBv}\,v.
+\]
+Then $v^TB\widehat y=0$ and $\ell^T\widehat y=1$.
+Choose $c\in\mathbb R$ so that $\widehat y^TB\widehat y+2c>0$.
+For the vectors $a_*=(v,0)$ and $b_*=(\widehat y,c)$,
+\[
+ \begin{aligned}
+ a_*^T\mathcal B a_*&=v^TBv>0,\\
+ b_*^T\mathcal B b_*&=\widehat y^TB\widehat y+2c>0,\\
+ a_*^T\mathcal B b_*&=v^TB\widehat y+c\ell^Tv=0.
+ \end{aligned}
+\]
+The vectors are linearly independent, because $\ell^Tv=0$ while
+$\ell^T\widehat y=1$. The vanishing cross term shows that the
+quadratic form of $\mathcal B$ is positive definite on their
+two-dimensional span, contradicting $n_+(\mathcal B)\le1$.
+Therefore
+\begin{equation}\label{eq:bordered-form-negativity}
+ v^TBv\le0\qquad\text{whenever }\ell^Tv=0.
+\end{equation}
+
+Now let $b_1,\ldots,b_n$ be real coefficients with $\sum_i b_i=0$,
+and set $v_i=K(p,s_i)b_i$. Then
+\[
+ \ell^Tv=\sum_i\frac{K(p,s_i)b_i}{K(p,s_i)}=0,
+\]
+and, by \cref{eq:squared-distance,eq:boundary-bordered-matrix},
+\[
+ \sum_{i,j=1}^n b_i b_j D_p(s_i,s_j)=v^TBv\le0.
+\]
+The diagonal terms vanish on both sides, and the inequality follows
+from \eqref{eq:bordered-form-negativity}. This proves conditional
+negative semidefiniteness for distinct points. For a finite family
+with repeated points, replace the coefficients at each distinct
+point by their sum. This preserves both the total coefficient sum
+and the quadratic expression, so the same conclusion holds.
+\end{proof}

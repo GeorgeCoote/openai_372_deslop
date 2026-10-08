@@ -1,0 +1,749 @@
+% Included by main.tex; the preamble and references are shared.
+\section{Boundary kernels and the multiplier identity}\label{sec:boundary-kernels}
+
+\subsection{A subcritical disk potential}
+
+Let $\Omega\subset\mathbb R^2$ be a nonempty bounded simply connected
+open set with smooth boundary, and fix the smooth conformal
+diffeomorphism $\Phi:\overline{\mathbb D}\to\overline\Omega$ constructed
+in \cref{lem:conformal}. Here
+$\mathbb D=\{z\in\mathbb C:|z|<1\}$ and $S^1=\partial\mathbb D$.
+Write $\lambda_D$ and $\lambda_N$ for the first Dirichlet and first
+positive Neumann eigenvalues of $\Omega$, respectively. Define
+\begin{equation}\label{eq:conformal-measure}
+ dq(x)=\lambda_N|\Phi'(x)|^2\,dx.
+\end{equation}
+Its density is bounded and positive. We use real scalar functions and
+write $\langle f,g\rangle_q=\int_{\mathbb D}fg\,dq$ and
+$\|f\|_q^2=\langle f,f\rangle_q$.
+
+For $\eta\in H_0^1(\mathbb D)$, put $u=\eta\circ\Phi^{-1}$.
+The smooth diffeomorphism preserves zero trace, so
+$u\in H_0^1(\Omega)$. Conformality gives
+$D\Phi=|\Phi'|R$, where $R$ is a rotation, and
+$\det D\Phi=|\Phi'|^2$. Thus the chain rule and change of variables give
+\[
+ \int_\Omega|\nabla u|^2\,dy
+ =\int_{\mathbb D}|\nabla\eta|^2\,dx.
+\]
+These identities hold first for smooth functions and then by density
+in $H_0^1$. The Dirichlet inequality on $\Omega$ therefore gives
+\[
+ \|\eta\|_q^2
+ =\lambda_N\int_\Omega u^2\,dy
+ \le\frac{\lambda_N}{\lambda_D}\int_\Omega|\nabla u|^2\,dy
+ =\frac{\lambda_N}{\lambda_D}
+       \int_{\mathbb D}|\nabla\eta|^2\,dx.
+\]
+The spectral comparison \cref{lem:spectral-gap} gives
+$\lambda_N<\lambda_D$. Hence
+\begin{equation}\label{eq:weighted-dirichlet}
+ \|\eta\|_q^2\le d\int_{\mathbb D}|\nabla\eta|^2\,dx
+ \qquad(\eta\in H_0^1(\mathbb D)),
+ \qquad d=\frac{\lambda_N}{\lambda_D}<1.
+\end{equation}
+
+For the scalar kernel construction, we allow any measure $dq=a\,dx$
+with bounded nonnegative density satisfying
+\cref{eq:weighted-dirichlet} for some fixed $0<d<1$.
+The conformal measure \cref{eq:conformal-measure} is one such measure;
+the zero measure is also allowed.
+
+The Dirichlet Green function of the disk is
+\begin{equation}\label{eq:disk-green}
+ G(x,y)=\frac1{2\pi}\log\left|
+                  \frac{1-\overline{x}y}{x-y}\right|
+ =\frac1{4\pi}\log\left(
+       1+\frac{(1-|x|^2)(1-|y|^2)}{|x-y|^2}\right),
+ \qquad x\ne y.
+\end{equation}
+It is nonnegative and symmetric, vanishes when either variable lies
+on $S^1$, and has logarithmic singularity
+$-(2\pi)^{-1}\log|x-y|$. Its diagonal value is set to $+\infty$;
+the diagonal has measure zero in all integrals below.
+For fixed $x\in\mathbb D$, it is harmonic in $y$ away from $x$:
+both logarithms in the first formula are logarithms of moduli of
+nonvanishing holomorphic functions there.
+
+\begin{lemma}\label[lemma]{lem:green-operator}
+The operator
+\[
+ Tf(x)=\int_{\mathbb D}G(x,y)f(y)\,dq(y)
+\]
+is bounded and self-adjoint on $L^2(q)$, with $\|T\|\le d<1$.
+For each $f\in L^2(q)$, the displayed integral is the continuous
+interior representative of the weak Dirichlet solution of
+$-\Delta\psi=af$.
+For every measure $0\le\rho\le q$, the operator
+\[
+ T_\rho f(x)=\int_{\mathbb D}G(x,y)f(y)\,d\rho(y)
+\]
+has the same properties on $L^2(\rho)$, with $\|T_\rho\|\le d$.
+\end{lemma}
+\begin{proof}
+We first justify the Green representation for a source
+$b\in L^2(\mathbb D;dx)$. The Poincar\'e inequality and Lax--Milgram
+\cite[Theorem 4.20, p.~103]{Hunter}
+give a unique $u\in H_0^1(\mathbb D)$ satisfying
+\begin{equation}\label{eq:weak-poisson}
+ \int_{\mathbb D}\nabla u\cdot\nabla\eta\,dx
+ =\int_{\mathbb D}b\eta\,dx
+ \qquad(\eta\in H_0^1(\mathbb D)).
+\end{equation}
+If $b\in C_c^\infty(\mathbb D)$, this solution is smooth up to the
+boundary. Apply Green's second identity to $u$ and $G(x,\cdot)$ on
+$\mathbb D\setminus\overline{B_\varepsilon(x)}$.
+The outer boundary term is zero. On the inner circle, whose outward
+normal points towards $x$,
+\[
+ G(x,y)=-\frac1{2\pi}\log\varepsilon+O(1),
+ \qquad \partial_\nu G(x,y)=\frac1{2\pi\varepsilon}+O(1).
+\]
+Consequently the integral of
+$G\partial_\nu u-u\partial_\nu G$ tends to $-u(x)$.
+Since $\Delta_yG(x,y)=0$ away from $x$ and $\Delta u=-b$,
+letting $\varepsilon\downarrow0$ gives
+\begin{equation}\label{eq:green-representation}
+ u(x)=\int_{\mathbb D}G(x,y)b(y)\,dy.
+\end{equation}
+
+For general $b\in L^2(dx)$, choose $b_n\in C_c^\infty(\mathbb D)$
+converging to $b$ in $L^2$, and let $u_n$ be their weak solutions.
+Testing the difference equation and using Poincar\'e gives
+\[
+ \|\nabla(u_n-u)\|_2^2
+ \le C\|b_n-b\|_2\|\nabla(u_n-u)\|_2.
+\]
+Thus $u_n\to u$ in $H_0^1$, and a subsequence converges almost
+everywhere. For each fixed $x\in\mathbb D$, the logarithmic pole is
+square integrable, so $G(x,\cdot)\in L^2(dx)$ and
+\[
+ \left|\int_{\mathbb D}G(x,y)(b_n-b)(y)\,dy\right|
+ \le\|G(x,\cdot)\|_2\|b_n-b\|_2\longrightarrow0.
+\]
+Passing to the limit in \cref{eq:green-representation} proves that
+its right-hand side equals $u$ almost everywhere.
+
+To prove continuity of this representative, fix $K\Subset\mathbb D$
+and $r<1$ with $|x|\le r$ on $K$. For $x,x_0\in K$,
+\[
+ \left|\log|1-\overline{x}y|
+           -\log|1-\overline{x_0}y|\right|
+ \le\frac{|x-x_0|}{1-r}\qquad(y\in\mathbb D).
+\]
+For the singular part choose $\chi\in C_c^\infty(\mathbb R^2)$
+equal to one on $\{|z|\le2\}$ and set $F(z)=\chi(z)\log|z|$.
+Then $F\in L^2(\mathbb R^2)$, since
+$\int_0^1 t|\log t|^2\,dt<\infty$, and
+\[
+ \|\log|x-\cdot|-\log|x_0-\cdot|\|_{L^2(\mathbb D)}
+ \le\|F(x-\cdot)-F(x_0-\cdot)\|_{L^2(\mathbb R^2)}
+ \longrightarrow0.
+\]
+Here continuity of translations in $L^2$ follows by approximation
+by smooth compactly supported functions: translation preserves the
+$L^2$ norm, and the translated approximants converge in $L^2$.
+Together with \cref{eq:disk-green}, these estimates give
+$\|G(x,\cdot)-G(x_0,\cdot)\|_2\to0$. Hence
+\[
+ \left|\int_{\mathbb D}(G(x,y)-G(x_0,y))b(y)\,dy\right|
+ \le\|G(x,\cdot)-G(x_0,\cdot)\|_2\|b\|_2\longrightarrow0.
+\]
+This proves the asserted interior continuity.
+
+Now let $f\in L^2(q)$. The source $af$ belongs to $L^2(dx)$ because
+\[
+ \int_{\mathbb D}|af|^2\,dx
+ \le\|a\|_\infty\int_{\mathbb D}|f|^2\,dq.
+\]
+Changing $f$ on a $q$-null set does not change $af$ almost everywhere
+with respect to $dx$, so the integral defines a linear map on $L^2(q)$.
+The representation just proved identifies $\psi=Tf$ with the weak
+solution for $b=af$. Taking $\eta=\psi$ in \cref{eq:weak-poisson}
+gives
+\[
+ \int_{\mathbb D}|\nabla\psi|^2\,dx
+ =\int_{\mathbb D}af\psi\,dx=\langle\psi,f\rangle_q.
+\]
+Thus \cref{eq:weighted-dirichlet} and Cauchy--Schwarz imply
+\[
+ \|\psi\|_q^2
+ \le d\int_{\mathbb D}|\nabla\psi|^2\,dx
+ =d\langle\psi,f\rangle_q
+ \le d\|\psi\|_q\|f\|_q.
+\]
+Dividing when $\|\psi\|_q>0$, with the zero case immediate, proves
+$\|T\|\le d$.
+
+For self-adjointness, \cref{eq:disk-green} gives
+$G(x,y)=G(y,x)$ and
+\[
+ 0\le G(x,y)\le\frac1{2\pi}\log\frac2{|x-y|}.
+\]
+The square of the upper bound is integrable on
+$\mathbb D\times\mathbb D$; boundedness of $a$ therefore gives
+$G\in L^2(q\times q)$. For $f,g\in L^2(q)$, Cauchy--Schwarz on the
+product space gives
+\[
+ \iint G(x,y)|f(y)g(x)|\,dq(y)\,dq(x)
+ \le\|G\|_{L^2(q\times q)}\|f\|_q\|g\|_q<\infty.
+\]
+Fubini and symmetry now yield
+\[
+ \langle Tf,g\rangle_q
+ =\iint G(x,y)f(y)g(x)\,dq(y)\,dq(x)
+ =\langle f,Tg\rangle_q.
+\]
+Since $T$ is bounded and defined on all of $L^2(q)$, it is self-adjoint.
+
+Finally, $0\le\rho\le q$ means $\rho(E)\le q(E)$ for every
+measurable set $E$. It follows that $d\rho=c\,dx$ with
+$0\le c\le a$ almost everywhere, so $c$ is bounded. Moreover,
+\[
+ \|\eta\|_{L^2(\rho)}^2
+ \le\|\eta\|_q^2
+ \le d\int_{\mathbb D}|\nabla\eta|^2\,dx
+ \qquad(\eta\in H_0^1(\mathbb D)).
+\]
+This is the estimate needed to bound the solution operator on
+$L^2(\rho)$. Indeed, for $f\in L^2(\rho)$ the source $cf$ lies in
+$L^2(dx)$, and its weak solution $\psi=T_\rho f$ satisfies
+\[
+ \|\psi\|_{L^2(\rho)}^2
+ \le d\int_{\mathbb D}|\nabla\psi|^2\,dx
+ =d\int_{\mathbb D}f\psi\,d\rho
+ \le d\|f\|_{L^2(\rho)}\|\psi\|_{L^2(\rho)}.
+\]
+Thus $\|T_\rho\|\le d$. The same Green representation proves
+interior continuity, and the same Fubini argument with $c$ in place
+of $a$ proves self-adjointness.
+\end{proof}
+
+For Lipschitz boundary data $h:S^1\to\mathbb R$, define the Poisson
+extension
+\begin{equation}\label{eq:poisson-extension}
+ Ah(x)=\int_{S^1}P_s(x)h(s)\,ds,
+ \qquad P_s(x)=\frac{1-|x|^2}{2\pi|s-x|^2},
+\end{equation}
+where $ds$ is arclength on the unit circle. To justify its Sobolev
+regularity, write
+\[
+ h(e^{i\theta})=\sum_{n\in\mathbb Z}h_ne^{in\theta},
+ \qquad
+ Ah(re^{i\theta})=\sum_{n\in\mathbb Z}h_nr^{|n|}e^{in\theta}.
+\]
+Lipschitz regularity gives $h\in H^1(S^1)$, so
+$\sum_n(1+n^2)|h_n|^2<\infty$. Parseval's identity and integration
+in polar coordinates give
+\[
+ \|Ah\|_{L^2(\mathbb D)}^2
+ =\pi\sum_{n\in\mathbb Z}\frac{|h_n|^2}{|n|+1},
+ \qquad
+ \|\nabla Ah\|_{L^2(\mathbb D)}^2
+ =2\pi\sum_{n\in\mathbb Z}|n|\,|h_n|^2.
+\]
+These identities hold first for finite Fourier sums; their harmonic
+extensions converge in $H^1(\mathbb D)$ by the displayed bounds.
+Their boundary values converge to $h$ in $H^1(S^1)$, so continuity
+of the trace shows that $\operatorname{Tr}Ah=h$. Harmonicity also
+passes to the limit, giving
+\[
+ \int_{\mathbb D}\nabla Ah\cdot\nabla\eta\,dx=0
+ \qquad(\eta\in H_0^1(\mathbb D)).
+\]
+
+We seek $W_h\in H^1(\mathbb D)$ with trace $h$ satisfying
+\begin{equation}\label{eq:weak-potential-solution}
+ \int_{\mathbb D}\nabla W_h\cdot\nabla\eta\,dx
+ =\int_{\mathbb D}aW_h\eta\,dx
+ \qquad(\eta\in H_0^1(\mathbb D)).
+\end{equation}
+This is the weak meaning of $-\Delta W_h\,dx=W_h\,dq$.
+Existence and uniqueness follow from Lax--Milgram
+\cite[Theorem 4.20, p.~103]{Hunter} after writing
+$W_h=Ah+c$, $c\in H_0^1(\mathbb D)$. Indeed, the continuous form
+\[
+ B(u,\eta)=\int_{\mathbb D}\nabla u\cdot\nabla\eta\,dx
+           -\int_{\mathbb D}au\eta\,dx
+\]
+satisfies
+$B(c,c)\ge(1-d)\|\nabla c\|_2^2$ by
+\cref{eq:weighted-dirichlet}, and the correction equation is
+$B(c,\eta)=\int_{\mathbb D}aAh\,\eta\,dx$.
+
+The solution has the explicit representation
+\begin{equation}\label{eq:potential-extension}
+ W_h=Ah+T(I-T)^{-1}Ah.
+\end{equation}
+To verify it, boundedness of $a$ gives $Ah\in L^2(q)$, and
+\cref{lem:green-operator} gives
+$(I-T)^{-1}=\sum_{n\ge0}T^n$ in operator norm on $L^2(q)$.
+Put $v=(I-T)^{-1}Ah$ and $c=Tv$. Then
+$c\in H_0^1(\mathbb D)$, and the weak Poisson equation gives
+\[
+ \int_{\mathbb D}\nabla c\cdot\nabla\eta\,dx
+ =\int_{\mathbb D}av\eta\,dx
+ \qquad(\eta\in H_0^1(\mathbb D)).
+\]
+The identity $(I-T)v=Ah$ implies $v=Ah+c=W_h$ in $L^2(q)$.
+Consequently harmonicity of $Ah$ yields
+\[
+ \int_{\mathbb D}\nabla W_h\cdot\nabla\eta\,dx
+ =\int_{\mathbb D}\nabla c\cdot\nabla\eta\,dx
+ =\int_{\mathbb D}aW_h\eta\,dx.
+\]
+Also $\operatorname{Tr}W_h=h$, since $c$ has zero trace.
+For a direct uniqueness check, the difference $z$ of two solutions
+with this trace lies in $H_0^1(\mathbb D)$. Testing its equation by
+$z$ and using \cref{eq:weighted-dirichlet} gives
+\[
+ \|\nabla z\|_2^2=\|z\|_q^2\le d\|\nabla z\|_2^2.
+\]
+Since $d<1$, $\nabla z=0$, and Poincar\'e gives $z=0$.
+For vector boundary data all constructions and equations are
+understood componentwise.
+
+\subsection{Positive kernels and their estimates}
+
+For $s\in S^1$, define $U_{0,s}=P_s$ and recursively set
+\[
+ U_{n+1,s}(x)=\int_{\mathbb D}G(x,y)U_{n,s}(y)\,dq(y).
+\]
+The nonnegative integrands define measurable functions with values in
+$[0,\infty]$. We write $T^nP_s=U_{n,s}$; this definition does not
+require $P_s\in L^2(q)$. Finiteness is established below.
+For $p\in\mathbb D$ and distinct $s,t\in S^1$, define
+\begin{align}
+ K(p,s)&=P_s(p)+\sum_{n\ge1}(T^nP_s)(p),
+                    \label{eq:solution-kernel}\\
+ R(s,t)&=\sum_{n\ge0}\int_{\mathbb D}P_sT^nP_t\,dq,
+                    \label{eq:interaction-kernel}\\
+ N(s,t)&=N_0(s,t)+R(s,t),
+ \qquad N_0(s,t)=\frac1{\pi|s-t|^2}.
+                    \label{eq:boundary-kernel}
+\end{align}
+For integrations we also define $R$ on the diagonal by the same
+nonnegative series, allowing the value $+\infty$.
+
+\begin{lemma}\label[lemma]{lem:kernel-estimates}
+The kernels in \cref{eq:solution-kernel,eq:interaction-kernel,eq:boundary-kernel}
+are finite at the stated points. For fixed $p\in\mathbb D$,
+$K(p,\cdot)$ is positive and bounded. The kernel $R$ is symmetric,
+nonnegative, and integrable on $S^1\times S^1$, with
+\begin{equation}\label{eq:interaction-mass}
+ \iint_{S^1\times S^1}R(s,t)\,ds\,dt
+ \le\frac{q(\mathbb D)}{1-d}.
+\end{equation}
+For Lipschitz scalar or vector boundary data $h,k$,
+\begin{align}
+ W_h(p)&=\int_{S^1}K(p,s)h(s)\,ds,
+                         \label{eq:solution-representation}\\
+ \langle Ah,(I-T)^{-1}Ak\rangle_q
+ &=\iint_{S^1\times S^1}R(s,t)h(s)\cdot k(t)\,ds\,dt.
+                         \label{eq:interaction-representation}
+\end{align}
+For scalar data the dot denotes multiplication; for vector data the
+inner product on the left is the sum of the component inner products.
+\end{lemma}
+\begin{proof}
+Constants below are independent of interior and boundary points,
+unless stated otherwise. The explicit formulas give
+\begin{equation}\label{eq:elementary-kernel-bounds}
+ P_s(y)\le\frac1{\pi|y-s|},
+ \qquad 0\le G(x,y)\le\frac1{2\pi}\log\frac2{|x-y|}.
+\end{equation}
+For the first bound use $1-|y|^2\le2|y-s|$; for the second use
+$|1-\overline{x}y|\le2$. Translating the centres and integrating
+over a disk of radius two gives
+\[
+ \sup_{s\in S^1}\|P_s\|_{L^{3/2}(dx)}<\infty,
+ \qquad
+ \sup_{x\in\mathbb D}\|G(x,\cdot)\|_{L^3(dx)}<\infty,
+\]
+since $\int_0^2 r^{-3/2}r\,dr$ and
+$\int_0^2(\log(2/r))^3r\,dr$ are finite.
+
+Define the Green potential $F_s=TP_s$. We use it as the starting
+point for the $L^2(q)$ contraction estimate. Writing $dq=a\,dy$,
+H\"older's inequality with exponents $3$ and $3/2$ gives
+\begin{equation}\label{eq:first-green-bound}
+ F_s(x)=\int_{\mathbb D}G(x,y)P_s(y)a(y)\,dy
+ \le\|a\|_\infty\|G(x,\cdot)\|_{L^3(dx)}
+                   \|P_s\|_{L^{3/2}(dx)}\le C.
+\end{equation}
+Thus Green integration regularises the singularity of $P_s$ at
+$s$, producing a bounded function, with
+$\|F_s\|_q\le Cq(\mathbb D)^{1/2}$. The recursively defined
+integrals satisfy $T^nP_s=T^{n-1}F_s$ for $n\ge1$, with the
+right-hand side interpreted as the $L^2(q)$ operator iterates and,
+for $n\ge2$, their Green representatives.
+Since $q$ has bounded density, the uniform $L^3(dx)$ bound above
+also gives $\sup_p\|G(p,\cdot)\|_q<\infty$. Hence, for $n\ge2$,
+\begin{equation}\label{eq:geometric-kernel-bound}
+ (T^nP_s)(p)
+ =\langle G(p,\cdot),T^{n-2}F_s\rangle_q
+ \le\|G(p,\cdot)\|_q d^{n-2}\|F_s\|_q
+ \le C d^{n-2}.
+\end{equation}
+Together with \cref{eq:first-green-bound}, this proves convergence
+of the series for $K$. For fixed $p$, the function $P_s(p)$ is
+positive and bounded as $s$ varies, so the same holds for $K(p,s)$.
+
+For the zeroth term of $R$, fix $s\ne t$ and put
+$\delta=|s-t|/3$. On $\mathbb D\cap B_\delta(s)$,
+$|y-t|\ge2\delta$, and \cref{eq:elementary-kernel-bounds} gives
+\[
+ P_s(y)P_t(y)\le\frac1{2\pi^2\delta|y-s|}.
+\]
+This is integrable because
+$\int_{B_\delta(s)}|y-s|^{-1}\,dy=2\pi\delta$.
+The same argument applies near $t$. Outside these two disks,
+$P_sP_t\le(\pi^2\delta^2)^{-1}$. Thus $P_sP_t\in L^1(dx)$,
+and boundedness of $a$ gives $\int P_sP_t\,dq<\infty$.
+Also \cref{eq:elementary-kernel-bounds} gives
+$\sup_s\int_{\mathbb D}P_s\,dq\le C$. Therefore the explicit
+bounds \cref{eq:first-green-bound,eq:geometric-kernel-bound} imply
+\[
+ \int_{\mathbb D}P_sTP_t\,dq\le C,
+ \qquad
+ \int_{\mathbb D}P_sT^nP_t\,dq\le C d^{n-2}\quad(n\ge2).
+\]
+This proves finiteness of $R(s,t)$, and hence of $N(s,t)$, for
+distinct $s,t$.
+
+For $n\ge1$, the $n$th term of $R$ is the nonnegative chain integral
+\[
+ \int_{\mathbb D^{n+1}}
+ P_s(y_0)\left(\prod_{j=0}^{n-1}G(y_j,y_{j+1})\right)
+ P_t(y_n)\,dq(y_0)\cdots dq(y_n).
+\]
+Reversing the variables and using symmetry of $G$ proves symmetry
+in $s,t$; the zeroth term is also symmetric.
+The Poisson kernel satisfies $\int_{S^1}P_s(y)\,ds=1$.
+Tonelli's theorem, applied to the nonnegative chains and series,
+therefore gives
+\[
+ \iint R(s,t)\,ds\,dt
+ =\sum_{n\ge0}\langle1,T^n1\rangle_q
+ \le\sum_{n\ge0}d^n\|1\|_q^2
+ =\frac{q(\mathbb D)}{1-d}.
+\]
+This proves \cref{eq:interaction-mass}. Values on the diagonal
+$s=t$ do not affect these integrals, since it has zero product
+arclength measure.
+
+We next prove \cref{eq:solution-representation}. The Neumann series
+in \cref{eq:potential-extension} gives
+\[
+ W_h(p)=Ah(p)+\sum_{n\ge1}T^nAh(p).
+\]
+Indeed, the series for $(I-T)^{-1}Ah$ converges in $L^2(q)$,
+and evaluation after applying $T$ is bounded by
+$|Tf(p)|\le\|G(p,\cdot)\|_q\|f\|_q$.
+For nonnegative scalar $h$, inserting \cref{eq:poisson-extension}
+into the iterated integrals and applying Tonelli gives
+\[
+ T^nAh(p)=\int_{S^1}(T^nP_s)(p)h(s)\,ds
+ \qquad(n\ge0).
+\]
+Summing gives \cref{eq:solution-representation}.
+For signed bounded $h$, all exchanges are absolutely justified by
+\[
+ \int_{S^1}K(p,s)|h(s)|\,ds
+ \le\|h\|_\infty\int_{S^1}K(p,s)\,ds<\infty,
+\]
+using boundedness of $K(p,\cdot)$.
+
+Finally, the operator Neumann series gives
+\[
+ \langle Ah,(I-T)^{-1}Ak\rangle_q
+ =\sum_{n\ge0}\langle Ah,T^nAk\rangle_q.
+\]
+For nonnegative scalar $h,k$, their Poisson representations and
+Tonelli yield
+\[
+ \langle Ah,T^nAk\rangle_q
+ =\iint h(s)k(t)
+      \left(\int_{\mathbb D}P_sT^nP_t\,dq\right)\,ds\,dt.
+\]
+Summing proves \cref{eq:interaction-representation}. For signed
+bounded data the required absolute domination follows from
+\cref{eq:interaction-mass}:
+\[
+ \iint R(s,t)|h(s)k(t)|\,ds\,dt
+ \le\|h\|_\infty\|k\|_\infty\frac{q(\mathbb D)}{1-d}<\infty.
+\]
+The vector formulas follow by applying the scalar formulas to each
+component and summing.
+\end{proof}
+
+\subsection{The boundary energy}
+
+We now return to the conformal measure \cref{eq:conformal-measure}.
+A vector boundary function $h:S^1\to\mathbb R^2$ is called tangent
+if $h(s)$ is tangent to $\partial\Omega$ at $\Phi(s)$.
+Write $h=(h_1,h_2)$ in fixed Cartesian coordinates, and define
+$W_h=(W_{h_1},W_{h_2})$, where each component is the scalar solution
+in \cref{eq:potential-extension}. Set
+\[
+ X_h(y)=W_h(\Phi^{-1}(y)),\qquad y\in\Omega.
+\]
+Composition with the smooth diffeomorphism gives
+$X_h\in H^1(\Omega;\mathbb R^2)$, and its trace satisfies
+$\operatorname{Tr}X_h(\Phi(s))=h(s)$. Thus tangent data give tangent
+trace on $\partial\Omega$.
+
+As in the preceding section on tangent vector fields, write
+\[
+ Q(X)=\int_\Omega\bigl(|\operatorname{div}X|^2
+                         +|\operatorname{curl}X|^2\bigr)\,dy,
+ \qquad \operatorname{curl}X=\partial_1X_2-\partial_2X_1,
+\]
+and define
+\[
+ E(h)=Q(X_h)-\lambda_N\|X_h\|_{L^2(\Omega)}^2,
+ \qquad E(h,k)=\frac14\bigl(E(h+k)-E(h-k)\bigr).
+\]
+The vector variational principle \cref{prop:vector-variational}
+gives $E(h)\ge0$ for tangent
+Lipschitz data, with equality exactly when $X_h=\nabla v$ for some
+$v$ in the real Neumann eigenspace $V$ for $\lambda_N$.
+Let $\nu$ be the outward unit normal to $\partial\Omega$,
+$\tau=(-\nu_2,\nu_1)$, and
+$\kappa=\det(\tau,\partial_\tau\tau)$, as in that section.
+
+\begin{lemma}\label[lemma]{lem:boundary-energy}
+For tangent Lipschitz data $h,k:S^1\to\mathbb R^2$,
+\begin{equation}\label{eq:boundary-energy}
+ \begin{aligned}
+ E(h,k)
+ &=\frac12\iint_{S^1\times S^1}
+       N_0(s,t)(h(s)-h(t))\cdot(k(s)-k(t))\,ds\,dt\\
+ &\quad-\iint_{S^1\times S^1}R(s,t)h(s)\cdot k(t)\,ds\,dt
+       +\int_{S^1}|\Phi'|(\kappa\circ\Phi)h\cdot k\,ds.
+ \end{aligned}
+\end{equation}
+\end{lemma}
+\begin{proof}
+Polarising the curvature identity \cref{lem:curvature-identity}
+for tangent vector fields gives
+\[
+ E(h,k)=\int_\Omega\nabla X_h:\nabla X_k\,dy
+       -\lambda_N\int_\Omega X_h\cdot X_k\,dy
+       +\int_{\partial\Omega}\kappa\,
+                 \operatorname{Tr}X_h\cdot\operatorname{Tr}X_k\,d\sigma,
+\]
+where $\nabla X_h:\nabla X_k
+=\sum_{j=1}^2\nabla(X_h)_j\cdot\nabla(X_k)_j$.
+For each Cartesian component, conformality and change of variables
+give
+\[
+ \int_\Omega\nabla(X_h)_j\cdot\nabla(X_k)_j\,dy
+ =\int_{\mathbb D}\nabla W_{h_j}\cdot\nabla W_{k_j}\,dx.
+\]
+Indeed, the inverse derivative contributes $|\Phi'|^{-2}$ to the
+gradient product, the rotation preserves dot products, and the
+area Jacobian is $|\Phi'|^2$. Also
+\[
+ \lambda_N\int_\Omega X_h\cdot X_k\,dy
+ =\int_{\mathbb D}W_h\cdot W_k\,\lambda_N|\Phi'|^2\,dx
+ =\langle W_h,W_k\rangle_q.
+\]
+For the boundary integral, the parametrisation
+$\theta\mapsto\Phi(e^{i\theta})$ has speed
+\[
+ |\Phi'(e^{i\theta})ie^{i\theta}|=|\Phi'(e^{i\theta})|.
+\]
+Thus $d\sigma=|\Phi'(s)|\,ds$, and the trace identities give
+\[
+ \int_{\partial\Omega}\kappa\,
+           \operatorname{Tr}X_h\cdot\operatorname{Tr}X_k\,d\sigma
+ =\int_{S^1}|\Phi'|(\kappa\circ\Phi)h\cdot k\,ds.
+\]
+
+It remains to express the two integrals over $\mathbb D$ in terms
+of boundary data. The difference $c_h=W_h-Ah$ has zero trace.
+Testing the equation for each component of $W_k$ by the corresponding
+component of $c_h$ gives
+\[
+ \int_{\mathbb D}\nabla c_h:\nabla W_k\,dx
+ =\langle c_h,W_k\rangle_q.
+\]
+Consequently
+\[
+ \int_{\mathbb D}\nabla W_h:\nabla W_k\,dx
+       -\langle W_h,W_k\rangle_q
+ =\int_{\mathbb D}\nabla Ah:\nabla W_k\,dx
+       -\langle Ah,W_k\rangle_q.
+\]
+Harmonicity of $Ah$ and zero trace of $W_k-Ak$ give
+$\int_{\mathbb D}\nabla Ah:\nabla(W_k-Ak)\,dx=0$.
+Since $W_k=(I-T)^{-1}Ak$ in $L^2(q)$, the last expression is
+\[
+ \int_{\mathbb D}\nabla Ah:\nabla Ak\,dx
+       -\langle Ah,(I-T)^{-1}Ak\rangle_q.
+\]
+The second term is the integral with $R$ in
+\cref{eq:interaction-representation}.
+
+For the harmonic term we prove
+\begin{equation}\label{eq:harmonic-boundary-energy}
+ \int_{\mathbb D}\nabla Ah:\nabla Ak\,dx
+ =\frac1{2\pi}\iint_{S^1\times S^1}
+       \frac{(h(s)-h(t))\cdot(k(s)-k(t))}{|s-t|^2}\,ds\,dt.
+\end{equation}
+First consider scalar Fourier modes $e_m(s)=s^m$, $m\in\mathbb Z$.
+For this calculation only, use complex functions and conjugate the
+second factor in each energy pairing. The harmonic extension is
+$Ae_m(re^{i\theta})=r^{|m|}e^{im\theta}$, and direct integration
+gives
+\[
+ \int_{\mathbb D}|\nabla Ae_m|^2\,dx=2\pi|m|.
+\]
+For $m\ge1$,
+\[
+ \frac{s^m-t^m}{s-t}=\sum_{j=0}^{m-1}s^{m-1-j}t^j.
+\]
+The summands are orthogonal in $L^2(S^1\times S^1)$ and each has
+squared norm $(2\pi)^2$. Hence
+\[
+ \iint\frac{|s^m-t^m|^2}{|s-t|^2}\,ds\,dt=(2\pi)^2m.
+\]
+Complex conjugation gives the same formula with $|m|$ for negative
+$m$, and both energies vanish for $m=0$. After multiplication by
+$1/(2\pi)$, this agrees with the disk energy.
+
+Different modes have zero cross terms in the disk integral by
+angular orthogonality. For the boundary integral, set
+\[
+ J_{m\ell}=\iint
+ \frac{(s^m-t^m)\overline{(s^\ell-t^\ell)}}{|s-t|^2}\,ds\,dt.
+\]
+Rotating both variables by $e^{i\alpha}$ preserves arclength and
+the denominator, so
+$J_{m\ell}=e^{i(m-\ell)\alpha}J_{m\ell}$ for every $\alpha$.
+Thus $J_{m\ell}=0$ when $m\ne\ell$.
+The matching mode energies and vanishing cross terms prove
+\cref{eq:harmonic-boundary-energy} for real scalar trigonometric
+polynomials, and then for smooth data by convergence of their
+Fourier sums in $C^1(S^1)$.
+
+For Lipschitz data, smooth periodic convolution gives approximants
+converging in $H^1(S^1)$ with uniformly bounded Lipschitz constants.
+The Poisson extensions converge in $H^1(\mathbb D)$ by the Fourier
+energy formulas above. On the boundary, the integrands are dominated
+by a constant, since
+\[
+ \frac{|h(s)-h(t)|\,|k(s)-k(t)|}{|s-t|^2}
+ \le\operatorname{Lip}(h)\operatorname{Lip}(k).
+\]
+Dominated convergence therefore proves the scalar identity for
+Lipschitz data. Summing over the two components proves
+\cref{eq:harmonic-boundary-energy} for vectors. Since
+$N_0(s,t)=1/(\pi|s-t|^2)$, combining this identity with the preceding
+calculations gives \cref{eq:boundary-energy}.
+\end{proof}
+
+Fix a nonzero $u\in V$, and define
+\begin{equation}\label{eq:gradient-boundary-data}
+ g(s)=(\nabla u)(\Phi(s)),\qquad s\in S^1.
+\end{equation}
+Elliptic regularity
+\cite[Chapter III, Theorems 6.4 and 6.5]{Showalter}
+gives $u\in C^\infty(\overline\Omega)$, so
+$g$ is smooth. It is tangent by the Neumann condition
+$\partial_\nu u=0$. For each Cartesian derivative
+$v_j=\partial_j u$, differentiation of $-\Delta u=\lambda_Nu$
+gives $-\Delta v_j=\lambda_Nv_j$. Conformal change of variables
+then gives
+\[
+ -\Delta(v_j\circ\Phi)
+ =\lambda_N|\Phi'|^2(v_j\circ\Phi)
+ \quad\text{in }\mathbb D,
+ \qquad \operatorname{Tr}(v_j\circ\Phi)=g_j.
+\]
+Uniqueness in \cref{eq:weak-potential-solution} therefore implies
+\begin{equation}\label{eq:gradient-extension}
+ W_g=(\nabla u)\circ\Phi,
+ \qquad X_g=\nabla u,
+ \qquad E(g)=0.
+\end{equation}
+The last equality is the equality case of the vector variational
+principle.
+
+\begin{proposition}[Multiplier identity]\label[proposition]{prop:multiplier-identity}
+For every real Lipschitz function $b$ on $S^1$,
+\begin{equation}\label{eq:multiplier-identity}
+ E(bg)=\frac12\iint_{S^1\times S^1}
+       N(s,t)(b(s)-b(t))^2g(s)\cdot g(t)\,ds\,dt.
+\end{equation}
+\end{proposition}
+\begin{proof}
+The products $bg$ and $b^2g$ are tangent Lipschitz boundary data.
+Since $E$ is positive semidefinite on such data (by
+\cref{prop:vector-variational}) and $E(g)=0$, for every
+tangent Lipschitz $h$ and every real $t$ we have
+\[
+ 0\le E(g+th)=2tE(g,h)+t^2E(h).
+\]
+If $E(g,h)\ne0$, choosing $t$ of the opposite sign and sufficiently
+small contradicts this inequality. Thus $E(g,h)=0$ for all such
+$h$, and in particular $E(g,b^2g)=0$. Consequently
+\[
+ E(bg)=E(bg,bg)-E(g,b^2g).
+\]
+Apply \cref{eq:boundary-energy} to both pairings on the right.
+The curvature integrals cancel because their pointwise factors
+are identical:
+\[
+ |bg|^2=g\cdot(b^2g)=b^2|g|^2.
+\]
+
+Write $b_s=b(s)$ and $g_s=g(s)$. For the harmonic integrals,
+expansion gives
+\[
+ \begin{aligned}
+ &|b_sg_s-b_tg_t|^2
+    -(g_s-g_t)\cdot(b_s^2g_s-b_t^2g_t)\\
+ &\qquad=(b_s^2+b_t^2-2b_sb_t)g_s\cdot g_t
+          =(b_s-b_t)^2g_s\cdot g_t.
+ \end{aligned}
+\]
+Their difference is therefore
+\[
+ \frac12\iint N_0(s,t)(b_s-b_t)^2g_s\cdot g_t\,ds\,dt.
+\]
+For the integrals with $R$, subtraction gives
+\[
+ \iint R(s,t)(b_t^2-b_sb_t)g_s\cdot g_t\,ds\,dt.
+\]
+These integrals are absolutely convergent because $b,g$ are bounded
+and $R$ is integrable. Symmetry of $R$ and $g_s\cdot g_t$ permits
+averaging the integrand with the one obtained by exchanging $s,t$.
+Since
+\[
+ \frac12\bigl(b_t^2-b_sb_t+b_s^2-b_sb_t\bigr)
+ =\frac12(b_s-b_t)^2,
+\]
+this contribution equals
+\[
+ \frac12\iint R(s,t)(b_s-b_t)^2g_s\cdot g_t\,ds\,dt.
+\]
+Adding the two contributions and using $N=N_0+R$ proves
+\cref{eq:multiplier-identity}.
+
+For completeness, the integral in that identity is absolutely
+convergent. If $L=\operatorname{Lip}(b)$, then
+$|b_s-b_t|\le L|s-t|$, so
+\[
+ \left|N_0(s,t)(b_s-b_t)^2g_s\cdot g_t\right|
+ \le\frac{L^2}{\pi}\|g\|_\infty^2.
+\]
+This bounds the integrand off the diagonal by a constant.
+For the remaining part,
+\[
+ \left|R(s,t)(b_s-b_t)^2g_s\cdot g_t\right|
+ \le4\|b\|_\infty^2\|g\|_\infty^2R(s,t),
+\]
+which is integrable by \cref{eq:interaction-mass}.
+\end{proof}
